@@ -912,20 +912,17 @@
 
   function checkout() {
 
-    if (!cart.length) {
+  if (!cart.length) {
 
-      showToast("Your cart is empty.");
+    showToast("Your cart is empty.");
 
-      return;
-
-    }
-
-
-    showToast(
-      "Checkout system is our next step."
-    );
+    return;
 
   }
+
+  window.location.href = "checkout.html";
+
+}
 
 
   let toastTimer;
