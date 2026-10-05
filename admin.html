@@ -9,24 +9,21 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
       --forest:#174A32;
       --green:#2F7D4E;
-      --green-hover:#25643E;
+      --green-dark:#25643E;
       --lime:#B9D86B;
       --cream:#F7F5EC;
-      --soft-green:#EDF4E8;
       --white:#FFFFFF;
       --ink:#17231C;
-      --muted:#647168;
+      --muted:#69756D;
       --border:#DDE5DD;
       --danger:#B42318;
-      --danger-soft:#FEECEB;
-      --shadow:0 18px 45px rgba(23,74,50,.10);
+      --danger-bg:#FDECEC;
     }
 
     * {
@@ -37,23 +34,13 @@
 
     body {
       font-family:"DM Sans",sans-serif;
-      background:#F7F9F6;
       color:var(--ink);
-    }
-
-    h1,h2,h3 {
-      font-family:"Manrope",sans-serif;
+      background:var(--cream);
     }
 
     button,
-    input,
-    textarea,
-    select {
+    input {
       font:inherit;
-    }
-
-    button {
-      cursor:pointer;
     }
 
     /* LOGIN */
@@ -63,77 +50,79 @@
       display:flex;
       align-items:center;
       justify-content:center;
-      padding:25px;
+      padding:24px;
 
       background:
-        radial-gradient(
-          circle at 80% 20%,
-          rgba(185,216,107,.25),
-          transparent 30%
-        ),
-        linear-gradient(
-          130deg,
-          #F7F5EC,
-          #EFF6E8
-        );
+        radial-gradient(circle at 85% 15%, rgba(185,216,107,.28), transparent 30%),
+        radial-gradient(circle at 10% 90%, rgba(47,125,78,.10), transparent 28%),
+        var(--cream);
     }
 
     .login-card {
       width:100%;
-      max-width:430px;
+      max-width:440px;
       background:white;
       border:1px solid var(--border);
-      border-radius:20px;
-      padding:38px;
-      box-shadow:var(--shadow);
+      border-radius:22px;
+      padding:42px 40px;
+      box-shadow:0 25px 70px rgba(23,74,50,.10);
     }
 
-    .login-logo {
-      height:58px;
-      max-width:180px;
-      object-fit:contain;
+    .brand {
+      text-align:center;
       margin-bottom:30px;
     }
 
-    .login-card h1 {
-      color:var(--forest);
-      font-size:30px;
-      margin-bottom:7px;
+    .brand img {
+      display:block;
+      width:auto;
+      height:76px;
+      max-width:200px;
+      object-fit:contain;
+      margin:0 auto 18px;
     }
 
-    .login-card > p {
+    .brand h1 {
+      font-family:"Manrope",sans-serif;
+      color:var(--forest);
+      font-size:28px;
+      line-height:1.2;
+      margin-bottom:8px;
+    }
+
+    .brand p {
       color:var(--muted);
       font-size:14px;
       line-height:1.6;
-      margin-bottom:27px;
+      max-width:320px;
+      margin:auto;
     }
 
-    label {
+    .field {
+      margin-bottom:17px;
+    }
+
+    .field label {
       display:block;
-      font-size:12px;
-      font-weight:700;
       margin-bottom:7px;
+      font-size:13px;
+      font-weight:700;
     }
 
-    input,
-    textarea,
-    select {
+    .field input {
       width:100%;
+      height:50px;
       border:1px solid var(--border);
-      border-radius:9px;
-      padding:12px 13px;
+      border-radius:10px;
+      padding:0 14px;
       background:white;
       outline:none;
+      font-size:15px;
     }
 
-    input:focus,
-    textarea:focus,
-    select:focus {
+    .field input:focus {
       border-color:var(--green);
-    }
-
-    .login-field {
-      margin-bottom:16px;
+      box-shadow:0 0 0 3px rgba(47,125,78,.08);
     }
 
     .password-wrap {
@@ -141,13 +130,13 @@
     }
 
     .password-wrap input {
-      padding-right:70px;
+      padding-right:75px;
     }
 
     .show-password {
       position:absolute;
-      right:8px;
       top:50%;
+      right:13px;
       transform:translateY(-50%);
       border:0;
       background:transparent;
@@ -156,600 +145,177 @@
       font-weight:800;
     }
 
-    .login-btn {
+    .login-button {
       width:100%;
+      height:50px;
       border:0;
-      border-radius:9px;
-      padding:14px;
+      border-radius:10px;
       background:var(--green);
       color:white;
       font-weight:800;
-      margin-top:5px;
+      margin-top:4px;
     }
 
-    .login-btn:hover {
-      background:var(--green-hover);
+    .login-button:hover {
+      background:var(--green-dark);
     }
 
-    .login-btn:disabled {
-      opacity:.6;
+    .login-button:disabled {
+      opacity:.65;
       cursor:not-allowed;
     }
 
-    .login-error {
+    .message {
       display:none;
-      margin-top:15px;
-      padding:11px;
-      border-radius:8px;
-      background:var(--danger-soft);
-      color:var(--danger);
+      margin-top:16px;
+      border-radius:10px;
+      padding:12px 14px;
       font-size:12px;
       line-height:1.5;
     }
 
-    /* APP */
-
-    #adminApp {
-      display:none;
-      min-height:100vh;
-    }
-
-    .sidebar {
-      position:fixed;
-      left:0;
-      top:0;
-      bottom:0;
-
-      width:245px;
-      padding:28px 20px;
-
-      background:var(--forest);
-      color:white;
-    }
-
-    .sidebar-logo {
-      height:50px;
-      max-width:160px;
-      object-fit:contain;
-      margin:0 8px 35px;
-    }
-
-    .side-label {
-      margin:0 10px 10px;
-      color:rgba(255,255,255,.45);
-      font-size:9px;
-      font-weight:800;
-      letter-spacing:1.3px;
-      text-transform:uppercase;
-    }
-
-    .nav-item {
-      width:100%;
-      border:0;
-      border-radius:9px;
-      padding:12px 13px;
-      margin-bottom:5px;
-
-      display:flex;
-      align-items:center;
-      gap:10px;
-
-      background:transparent;
-      color:rgba(255,255,255,.75);
-
-      text-align:left;
-      font-weight:600;
-      font-size:13px;
-    }
-
-    .nav-item.active,
-    .nav-item:hover {
-      background:rgba(255,255,255,.10);
-      color:white;
-    }
-
-    .sidebar-bottom {
-      position:absolute;
-      bottom:22px;
-      left:20px;
-      right:20px;
-    }
-
-    .logout-btn {
-      width:100%;
-      border:1px solid rgba(255,255,255,.18);
-      border-radius:9px;
-      padding:11px;
-      background:transparent;
-      color:white;
-      font-weight:700;
-    }
-
-    /* MAIN */
-
-    .main {
-      margin-left:245px;
-      min-height:100vh;
-    }
-
-    .topbar {
-      height:76px;
-      padding:0 38px;
-
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-
-      background:white;
-      border-bottom:1px solid var(--border);
-    }
-
-    .topbar-title {
-      font-family:"Manrope",sans-serif;
-      color:var(--forest);
-      font-weight:800;
-    }
-
-    .admin-info {
-      text-align:right;
-    }
-
-    .admin-name {
-      font-size:13px;
-      font-weight:700;
-    }
-
-    .admin-role {
-      color:var(--muted);
-      font-size:10px;
-      margin-top:2px;
-    }
-
-    .content {
-      padding:38px;
-      max-width:1450px;
-      margin:auto;
-    }
-
-    .page-heading {
-      display:flex;
-      justify-content:space-between;
-      align-items:flex-end;
-      gap:20px;
-      margin-bottom:30px;
-    }
-
-    .page-heading h1 {
-      color:var(--forest);
-      font-size:32px;
-    }
-
-    .page-heading p {
-      margin-top:5px;
-      color:var(--muted);
-      font-size:13px;
-    }
-
-    .primary-btn {
-      border:0;
-      border-radius:9px;
-      padding:12px 18px;
-      background:var(--green);
-      color:white;
-      font-weight:800;
-    }
-
-    .primary-btn:hover {
-      background:var(--green-hover);
-    }
-
-    /* STATS */
-
-    .stats {
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:16px;
-      margin-bottom:28px;
-    }
-
-    .stat {
-      background:white;
-      border:1px solid var(--border);
-      border-radius:14px;
-      padding:20px;
-    }
-
-    .stat-label {
-      color:var(--muted);
-      font-size:11px;
-      font-weight:700;
-      margin-bottom:8px;
-    }
-
-    .stat-value {
-      color:var(--forest);
-      font-family:"Manrope",sans-serif;
-      font-size:28px;
-      font-weight:800;
-    }
-
-    /* TABLE */
-
-    .panel {
-      background:white;
-      border:1px solid var(--border);
-      border-radius:15px;
-      overflow:hidden;
-    }
-
-    .panel-header {
-      padding:20px;
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:15px;
-      border-bottom:1px solid var(--border);
-    }
-
-    .panel-header h2 {
-      font-size:18px;
-      color:var(--forest);
-    }
-
-    .search {
-      max-width:280px;
-    }
-
-    .table-wrap {
-      overflow-x:auto;
-    }
-
-    table {
-      width:100%;
-      border-collapse:collapse;
-      min-width:900px;
-    }
-
-    th {
-      padding:13px 17px;
-      background:#FAFBF9;
-      border-bottom:1px solid var(--border);
-      color:var(--muted);
-      text-align:left;
-      font-size:10px;
-      text-transform:uppercase;
-      letter-spacing:.5px;
-    }
-
-    td {
-      padding:14px 17px;
-      border-bottom:1px solid #EEF1ED;
-      font-size:13px;
-      vertical-align:middle;
-    }
-
-    tr:last-child td {
-      border-bottom:0;
-    }
-
-    .product-cell {
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
-
-    .product-thumb {
-      width:50px;
-      height:50px;
-      object-fit:cover;
-      border-radius:9px;
-      background:var(--soft-green);
-      border:1px solid var(--border);
-    }
-
-    .product-placeholder {
-      width:50px;
-      height:50px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      border-radius:9px;
-      background:var(--soft-green);
-      font-size:22px;
-    }
-
-    .product-name {
-      font-weight:700;
-    }
-
-    .badge {
-      display:inline-flex;
-      padding:5px 8px;
-      border-radius:50px;
-      font-size:10px;
-      font-weight:800;
-    }
-
-    .badge-green {
-      background:#E8F5EB;
-      color:#267442;
-    }
-
-    .badge-gray {
-      background:#EFF1EF;
-      color:#69736D;
-    }
-
-    .badge-red {
-      background:#FDECEA;
-      color:#B42318;
-    }
-
-    .actions {
-      display:flex;
-      gap:6px;
-    }
-
-    .action-btn {
-      border:1px solid var(--border);
-      border-radius:7px;
-      background:white;
-      padding:7px 9px;
-      font-size:11px;
-      font-weight:700;
-    }
-
-    .action-btn:hover {
-      border-color:var(--green);
-      color:var(--green);
-    }
-
-    .delete-btn {
+    .message.error {
+      display:block;
+      background:var(--danger-bg);
       color:var(--danger);
     }
 
-    .empty {
-      padding:60px 20px;
+    .message.success {
+      display:block;
+      background:#E9F6EC;
+      color:#216A3C;
+    }
+
+    .security-note {
       text-align:center;
-      color:var(--muted);
+      margin-top:22px;
+      color:#8A948E;
+      font-size:10px;
     }
 
-    /* MODAL */
+    /* DASHBOARD */
 
-    .modal-overlay {
-      position:fixed;
-      inset:0;
-      z-index:2000;
-
+    #dashboard {
       display:none;
+      min-height:100vh;
+      background:#F6F8F5;
+    }
+
+    .dashboard-header {
+      height:78px;
+      padding:0 38px;
+      display:flex;
       align-items:center;
-      justify-content:center;
-
-      padding:20px;
-
-      background:rgba(0,0,0,.45);
-    }
-
-    .modal-overlay.show {
-      display:flex;
-    }
-
-    .modal {
-      width:100%;
-      max-width:720px;
-      max-height:92vh;
-      overflow-y:auto;
-
-      background:white;
-      border-radius:18px;
-      box-shadow:0 30px 80px rgba(0,0,0,.20);
-    }
-
-    .modal-header {
-      padding:22px 25px;
-      display:flex;
       justify-content:space-between;
-      align-items:center;
+      background:white;
       border-bottom:1px solid var(--border);
     }
 
-    .modal-header h2 {
-      color:var(--forest);
-      font-size:20px;
+    .dashboard-brand {
+      display:flex;
+      align-items:center;
+      gap:15px;
     }
 
-    .close-btn {
-      border:0;
-      background:transparent;
-      font-size:25px;
+    .dashboard-brand img {
+      height:48px;
+      width:auto;
+      object-fit:contain;
+    }
+
+    .dashboard-brand div {
+      font-family:"Manrope",sans-serif;
+      color:var(--forest);
+      font-weight:800;
+      font-size:18px;
+    }
+
+    .logout {
+      border:1px solid var(--border);
+      background:white;
+      color:var(--forest);
+      border-radius:9px;
+      padding:10px 15px;
+      font-weight:700;
+    }
+
+    .dashboard-content {
+      max-width:1200px;
+      margin:auto;
+      padding:45px 30px;
+    }
+
+    .welcome {
+      margin-bottom:30px;
+    }
+
+    .welcome h2 {
+      font-family:"Manrope",sans-serif;
+      color:var(--forest);
+      font-size:30px;
+      margin-bottom:7px;
+    }
+
+    .welcome p {
       color:var(--muted);
     }
 
-    .modal-body {
-      padding:25px;
+    .success-card {
+      background:white;
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:30px;
     }
 
-    .form-grid {
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:17px;
-    }
-
-    .field.full {
-      grid-column:1 / -1;
-    }
-
-    textarea {
-      min-height:90px;
-      resize:vertical;
-    }
-
-    .check-row {
-      display:flex;
-      gap:22px;
-      flex-wrap:wrap;
-      padding-top:5px;
-    }
-
-    .check-item {
+    .success-icon {
+      width:50px;
+      height:50px;
+      border-radius:50%;
+      background:#E9F6EC;
+      color:var(--green);
       display:flex;
       align-items:center;
-      gap:8px;
-      font-size:12px;
-      font-weight:700;
+      justify-content:center;
+      font-size:24px;
+      margin-bottom:18px;
     }
 
-    .check-item input {
-      width:auto;
+    .success-card h3 {
+      font-family:"Manrope",sans-serif;
+      color:var(--forest);
+      margin-bottom:8px;
     }
 
-    .image-preview {
-      display:none;
-      width:120px;
-      height:120px;
-      object-fit:cover;
-      border-radius:10px;
-      margin-top:10px;
-      border:1px solid var(--border);
-    }
-
-    .modal-footer {
-      padding:18px 25px;
-      display:flex;
-      justify-content:flex-end;
-      gap:10px;
-      border-top:1px solid var(--border);
-    }
-
-    .secondary-btn {
-      border:1px solid var(--border);
-      border-radius:9px;
-      padding:11px 17px;
-      background:white;
-      color:var(--ink);
-      font-weight:700;
-    }
-
-    /* TOAST */
-
-    .toast {
-      position:fixed;
-      right:25px;
-      bottom:25px;
-      z-index:5000;
-
-      max-width:360px;
-
-      padding:13px 17px;
-
-      background:var(--forest);
-      color:white;
-
-      border-radius:9px;
-
-      font-size:12px;
-      font-weight:700;
-
-      opacity:0;
-      visibility:hidden;
-      transform:translateY(15px);
-
-      transition:.2s;
-    }
-
-    .toast.show {
-      opacity:1;
-      visibility:visible;
-      transform:translateY(0);
-    }
-
-    .toast.error {
-      background:var(--danger);
-    }
-
-    @media(max-width:950px) {
-      .stats {
-        grid-template-columns:repeat(2,1fr);
-      }
-    }
-
-    @media(max-width:750px) {
-      .sidebar {
-        width:76px;
-        padding:20px 12px;
-      }
-
-      .sidebar-logo {
-        width:50px;
-        height:40px;
-        object-fit:contain;
-        margin:0 auto 30px;
-      }
-
-      .side-label {
-        display:none;
-      }
-
-      .nav-item {
-        justify-content:center;
-        font-size:0;
-      }
-
-      .nav-item span {
-        font-size:19px;
-      }
-
-      .logout-btn {
-        font-size:0;
-      }
-
-      .logout-btn::after {
-        content:"↪";
-        font-size:20px;
-      }
-
-      .main {
-        margin-left:76px;
-      }
-
-      .topbar {
-        padding:0 20px;
-      }
-
-      .content {
-        padding:25px 20px;
-      }
-
-      .form-grid {
-        grid-template-columns:1fr;
-      }
-
-      .field.full {
-        grid-column:auto;
-      }
+    .success-card p {
+      color:var(--muted);
+      line-height:1.6;
+      font-size:14px;
     }
 
     @media(max-width:520px) {
-      .stats {
-        grid-template-columns:1fr 1fr;
+      #loginScreen {
+        padding:14px;
       }
 
-      .page-heading {
-        align-items:flex-start;
-        flex-direction:column;
+      .login-card {
+        padding:34px 24px;
+        border-radius:18px;
       }
 
-      .page-heading .primary-btn {
-        width:100%;
+      .brand img {
+        height:68px;
       }
 
-      .panel-header {
-        align-items:flex-start;
-        flex-direction:column;
+      .brand h1 {
+        font-size:25px;
       }
 
-      .search {
-        max-width:none;
+      .dashboard-header {
+        padding:0 18px;
+      }
+
+      .dashboard-content {
+        padding:30px 18px;
       }
     }
   </style>
@@ -757,1594 +323,440 @@
 
 <body>
 
-<!-- LOGIN -->
-<section id="loginScreen">
+  <section id="loginScreen">
 
-  <div class="login-card">
+    <div class="login-card">
 
-    <img src="logo.png" class="login-logo" alt="SourceUp">
-
-    <h1>Admin Login</h1>
-
-    <p>
-      Sign in to manage SourceUp products, pricing,
-      inventory and availability.
-    </p>
-
-    <form id="loginForm">
-
-      <div class="login-field">
-        <label>Email</label>
-        <input
-          id="loginEmail"
-          type="email"
-          autocomplete="email"
-          required
-          placeholder="admin@email.com">
+      <div class="brand">
+        <img src="logo.png" alt="SourceUp">
+        <h1>Admin Portal</h1>
+        <p>
+          Manage SourceUp products, pricing,
+          inventory and availability.
+        </p>
       </div>
 
-      <div class="login-field">
+      <form id="loginForm">
 
-        <label>Password</label>
-
-        <div class="password-wrap">
-
+        <div class="field">
+          <label for="email">Email address</label>
           <input
-            id="loginPassword"
-            type="password"
-            autocomplete="current-password"
-            required
-            placeholder="Enter password">
-
-          <button
-            type="button"
-            class="show-password"
-            id="showPassword">
-            SHOW
-          </button>
-
+            id="email"
+            type="email"
+            autocomplete="email"
+            placeholder="Enter your email"
+            required>
         </div>
 
+        <div class="field">
+          <label for="password">Password</label>
+
+          <div class="password-wrap">
+
+            <input
+              id="password"
+              type="password"
+              autocomplete="current-password"
+              placeholder="Enter your password"
+              required>
+
+            <button
+              id="togglePassword"
+              class="show-password"
+              type="button">
+              SHOW
+            </button>
+
+          </div>
+        </div>
+
+        <button
+          id="loginButton"
+          class="login-button"
+          type="submit">
+          Sign In
+        </button>
+
+        <div id="message" class="message"></div>
+
+      </form>
+
+      <div class="security-note">
+        Authorized SourceUp administrators only
       </div>
 
-      <button
-        class="login-btn"
-        id="loginButton"
-        type="submit">
-        Sign In
-      </button>
+    </div>
 
-      <div
-        class="login-error"
-        id="loginError">
+  </section>
+
+
+  <section id="dashboard">
+
+    <header class="dashboard-header">
+
+      <div class="dashboard-brand">
+        <img src="logo.png" alt="SourceUp">
+        <div>Admin</div>
       </div>
 
-    </form>
-
-  </div>
-
-</section>
-
-
-<!-- ADMIN APP -->
-<section id="adminApp">
-
-  <aside class="sidebar">
-
-    <img src="logo.png" class="sidebar-logo" alt="SourceUp">
-
-    <div class="side-label">Management</div>
-
-    <button class="nav-item active">
-      <span>▦</span>
-      Products
-    </button>
-
-    <div class="sidebar-bottom">
-
-      <button
-        class="logout-btn"
-        id="logoutButton">
+      <button id="logoutButton" class="logout">
         Sign Out
       </button>
 
-    </div>
-
-  </aside>
-
-
-  <main class="main">
-
-    <header class="topbar">
-
-      <div class="topbar-title">
-        SourceUp Admin
-      </div>
-
-      <div class="admin-info">
-
-        <div
-          class="admin-name"
-          id="adminName">
-          Admin
-        </div>
-
-        <div class="admin-role">
-          Administrator
-        </div>
-
-      </div>
-
     </header>
 
+    <main class="dashboard-content">
 
-    <div class="content">
+      <div class="welcome">
+        <h2 id="welcomeName">Welcome</h2>
+        <p>Your SourceUp administrator account is working.</p>
+      </div>
 
-      <div class="page-heading">
+      <div class="success-card">
 
-        <div>
-          <h1>Products</h1>
-          <p>
-            Manage SourceUp product listings and availability.
-          </p>
-        </div>
+        <div class="success-icon">✓</div>
 
-        <button
-          class="primary-btn"
-          id="addProductButton">
-          + Add Product
-        </button>
+        <h3>Admin authentication successful</h3>
+
+        <p>
+          Your account has been authenticated and verified
+          as an active SourceUp administrator. Product
+          management will be added here next.
+        </p>
 
       </div>
 
+    </main>
 
-      <div class="stats">
+  </section>
 
-        <div class="stat">
-          <div class="stat-label">TOTAL PRODUCTS</div>
-          <div class="stat-value" id="totalProducts">0</div>
-        </div>
 
-        <div class="stat">
-          <div class="stat-label">ACTIVE</div>
-          <div class="stat-value" id="activeProducts">0</div>
-        </div>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-        <div class="stat">
-          <div class="stat-label">AVAILABLE</div>
-          <div class="stat-value" id="availableProducts">0</div>
-        </div>
+  <script>
 
-        <div class="stat">
-          <div class="stat-label">OUT OF STOCK</div>
-          <div class="stat-value" id="outProducts">0</div>
-        </div>
+    const SUPABASE_URL =
+      "https://wzpjeplgvgwwgoewfsum.supabase.co";
 
-      </div>
+    const SUPABASE_KEY =
+      "sb_publishable_tRwJJVSxCKXz4hG11_rIww__LtxcKEg";
 
 
-      <section class="panel">
+    const supabaseClient =
+      window.supabase.createClient(
+        SUPABASE_URL,
+        SUPABASE_KEY
+      );
 
-        <div class="panel-header">
 
-          <h2>Product Catalog</h2>
+    const loginScreen =
+      document.getElementById("loginScreen");
 
-          <input
-            class="search"
-            id="productSearch"
-            placeholder="Search products...">
+    const dashboard =
+      document.getElementById("dashboard");
 
-        </div>
+    const loginForm =
+      document.getElementById("loginForm");
 
-        <div
-          id="productTable">
-          <div class="empty">Loading products...</div>
-        </div>
+    const loginButton =
+      document.getElementById("loginButton");
 
-      </section>
+    const message =
+      document.getElementById("message");
 
-    </div>
 
-  </main>
+    /* PASSWORD SHOW/HIDE */
 
-</section>
+    document
+      .getElementById("togglePassword")
+      .addEventListener("click", function() {
 
+        const password =
+          document.getElementById("password");
 
-<!-- PRODUCT MODAL -->
-<div
-  class="modal-overlay"
-  id="productModal">
+        if (password.type === "password") {
 
-  <div class="modal">
-
-    <div class="modal-header">
-
-      <h2 id="modalTitle">
-        Add Product
-      </h2>
-
-      <button
-        class="close-btn"
-        id="closeModal">
-        ×
-      </button>
-
-    </div>
-
-
-    <form id="productForm">
-
-      <div class="modal-body">
-
-        <div class="form-grid">
-
-          <div class="field">
-
-            <label>Product Name *</label>
-
-            <input
-              id="productName"
-              required
-              placeholder="Tomato">
-
-          </div>
-
-
-          <div class="field">
-
-            <label>Category *</label>
-
-            <input
-              id="productCategory"
-              required
-              placeholder="Vegetables">
-
-          </div>
-
-
-          <div class="field">
-
-            <label>Unit *</label>
-
-            <select id="productUnit" required>
-
-              <option value="">
-                Select unit
-              </option>
-
-              <option value="kg">kg</option>
-              <option value="piece">piece</option>
-              <option value="pack">pack</option>
-              <option value="bundle">bundle</option>
-              <option value="sack">sack</option>
-              <option value="box">box</option>
-              <option value="crate">crate</option>
-
-            </select>
-
-          </div>
-
-
-          <div class="field">
-
-            <label>Price *</label>
-
-            <input
-              id="productPrice"
-              type="number"
-              min="0"
-              step="0.01"
-              required
-              placeholder="0.00">
-
-          </div>
-
-
-          <div class="field">
-
-            <label>Stock</label>
-
-            <input
-              id="productStock"
-              type="number"
-              min="0"
-              step="0.01"
-              value="0">
-
-          </div>
-
-
-          <div class="field">
-
-            <label>Product Photo</label>
-
-            <input
-              id="productImage"
-              type="file"
-              accept="image/jpeg,image/png,image/webp">
-
-            <img
-              id="imagePreview"
-              class="image-preview"
-              alt="Product preview">
-
-          </div>
-
-
-          <div class="field full">
-
-            <label>Description</label>
-
-            <textarea
-              id="productDescription"
-              placeholder="Product description..."></textarea>
-
-          </div>
-
-
-          <div class="field full">
-
-            <div class="check-row">
-
-              <label class="check-item">
-
-                <input
-                  id="productAvailable"
-                  type="checkbox"
-                  checked>
-
-                Available
-
-              </label>
-
-
-              <label class="check-item">
-
-                <input
-                  id="productActive"
-                  type="checkbox"
-                  checked>
-
-                Active listing
-
-              </label>
-
-            </div>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="modal-footer">
-
-        <button
-          type="button"
-          class="secondary-btn"
-          id="cancelProduct">
-          Cancel
-        </button>
-
-        <button
-          type="submit"
-          class="primary-btn"
-          id="saveProduct">
-          Save Product
-        </button>
-
-      </div>
-
-    </form>
-
-  </div>
-
-</div>
-
-
-<div
-  class="toast"
-  id="toast">
-</div>
-
-
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-<script>
-
-  /* =========================================
-     SUPABASE
-  ========================================= */
-
-  const SUPABASE_URL =
-    "https://wzpjeplgvgwwgoewfsum.supabase.co";
-
-  const SUPABASE_KEY =
-    "sb_publishable_tRwJJVSxCKXz4hG11_rIww__LtxcKEg";
-
-  const supabaseClient =
-    window.supabase.createClient(
-      SUPABASE_URL,
-      SUPABASE_KEY
-    );
-
-
-  /* =========================================
-     STATE
-  ========================================= */
-
-  let products = [];
-
-  let editingProduct = null;
-
-  let existingImageUrl = null;
-
-
-  /* =========================================
-     ELEMENTS
-  ========================================= */
-
-  const loginScreen =
-    document.getElementById("loginScreen");
-
-  const adminApp =
-    document.getElementById("adminApp");
-
-  const loginForm =
-    document.getElementById("loginForm");
-
-  const loginError =
-    document.getElementById("loginError");
-
-  const loginButton =
-    document.getElementById("loginButton");
-
-  const productModal =
-    document.getElementById("productModal");
-
-  const productForm =
-    document.getElementById("productForm");
-
-  const productSearch =
-    document.getElementById("productSearch");
-
-  const toast =
-    document.getElementById("toast");
-
-
-  /* =========================================
-     INITIAL SESSION
-  ========================================= */
-
-  initialize();
-
-
-  async function initialize() {
-
-    const {
-      data: { session }
-    } =
-      await supabaseClient.auth.getSession();
-
-
-    if (!session) {
-
-      showLogin();
-
-      return;
-
-    }
-
-
-    const allowed =
-      await verifyAdmin(session.user.id);
-
-
-    if (!allowed) {
-
-      await supabaseClient.auth.signOut();
-
-      showLogin();
-
-      return;
-
-    }
-
-
-    showAdmin();
-
-    await loadAdminProfile(session.user.id);
-
-    await loadProducts();
-
-  }
-
-
-  /* =========================================
-     LOGIN
-  ========================================= */
-
-  loginForm.addEventListener(
-    "submit",
-    async function(event) {
-
-      event.preventDefault();
-
-      loginError.style.display = "none";
-
-      loginButton.disabled = true;
-
-      loginButton.textContent =
-        "Signing in...";
-
-
-      const email =
-        document
-          .getElementById("loginEmail")
-          .value
-          .trim();
-
-      const password =
-        document
-          .getElementById("loginPassword")
-          .value;
-
-
-      const {
-        data,
-        error
-      } =
-        await supabaseClient
-          .auth
-          .signInWithPassword({
-            email,
-            password
-          });
-
-
-      if (error) {
-
-        showLoginError(
-          "Invalid email or password."
-        );
-
-        resetLoginButton();
-
-        return;
-
-      }
-
-
-      const allowed =
-        await verifyAdmin(data.user.id);
-
-
-      if (!allowed) {
-
-        await supabaseClient.auth.signOut();
-
-        showLoginError(
-          "This account does not have administrator access."
-        );
-
-        resetLoginButton();
-
-        return;
-
-      }
-
-
-      showAdmin();
-
-      await loadAdminProfile(data.user.id);
-
-      await loadProducts();
-
-      resetLoginButton();
-
-    }
-  );
-
-
-  async function verifyAdmin(userId) {
-
-    const {
-      data,
-      error
-    } =
-      await supabaseClient
-        .from("profiles")
-        .select("role,is_active")
-        .eq("id", userId)
-        .single();
-
-
-    if (error || !data) {
-      return false;
-    }
-
-
-    return (
-      data.role === "admin" &&
-      data.is_active === true
-    );
-
-  }
-
-
-  async function loadAdminProfile(userId) {
-
-    const {
-      data
-    } =
-      await supabaseClient
-        .from("profiles")
-        .select("full_name")
-        .eq("id", userId)
-        .single();
-
-
-    if (data?.full_name) {
-
-      document
-        .getElementById("adminName")
-        .textContent =
-        data.full_name;
-
-    }
-
-  }
-
-
-  document
-    .getElementById("logoutButton")
-    .addEventListener(
-      "click",
-      async function() {
-
-        await supabaseClient.auth.signOut();
-
-        location.reload();
-
-      }
-    );
-
-
-  document
-    .getElementById("showPassword")
-    .addEventListener(
-      "click",
-      function() {
-
-        const input =
-          document.getElementById(
-            "loginPassword"
-          );
-
-
-        if (input.type === "password") {
-
-          input.type = "text";
-
+          password.type = "text";
           this.textContent = "HIDE";
 
         } else {
 
-          input.type = "password";
-
+          password.type = "password";
           this.textContent = "SHOW";
 
         }
 
-      }
-    );
-
-
-  function showLogin() {
-
-    loginScreen.style.display = "flex";
-
-    adminApp.style.display = "none";
-
-  }
-
-
-  function showAdmin() {
-
-    loginScreen.style.display = "none";
-
-    adminApp.style.display = "block";
-
-  }
-
-
-  function showLoginError(message) {
-
-    loginError.textContent = message;
-
-    loginError.style.display = "block";
-
-  }
-
-
-  function resetLoginButton() {
-
-    loginButton.disabled = false;
-
-    loginButton.textContent = "Sign In";
-
-  }
-
-
-  /* =========================================
-     PRODUCTS
-  ========================================= */
-
-  async function loadProducts() {
-
-    document.getElementById(
-      "productTable"
-    ).innerHTML =
-      '<div class="empty">Loading products...</div>';
-
-
-    const {
-      data,
-      error
-    } =
-      await supabaseClient
-        .from("products")
-        .select("*")
-        .order(
-          "created_at",
-          { ascending:false }
-        );
-
-
-    if (error) {
-
-      showToast(
-        "Unable to load products: " +
-        error.message,
-        true
-      );
-
-      return;
-
-    }
-
-
-    products = data || [];
-
-    renderProducts();
-
-    updateStats();
-
-  }
-
-
-  function renderProducts() {
-
-    const container =
-      document.getElementById(
-        "productTable"
-      );
-
-
-    const query =
-      productSearch
-        .value
-        .trim()
-        .toLowerCase();
-
-
-    const filtered =
-      products.filter(product => {
-
-        const searchable =
-          `${product.name || ""}
-           ${product.category || ""}
-           ${product.unit || ""}`
-            .toLowerCase();
-
-        return searchable.includes(query);
-
       });
 
 
-    if (!filtered.length) {
+    /* LOGIN */
 
-      container.innerHTML =
-        '<div class="empty">No products found.</div>';
+    loginForm.addEventListener(
+      "submit",
+      async function(event) {
 
-      return;
+        event.preventDefault();
 
-    }
+        clearMessage();
 
+        loginButton.disabled = true;
+        loginButton.textContent = "Signing in...";
 
-    container.innerHTML = `
 
-      <div class="table-wrap">
-
-        <table>
-
-          <thead>
-
-            <tr>
-              <th>Product</th>
-              <th>Category</th>
-              <th>Unit</th>
-              <th>Price</th>
-              <th>Stock</th>
-              <th>Availability</th>
-              <th>Listing</th>
-              <th>Actions</th>
-            </tr>
-
-          </thead>
-
-          <tbody>
-
-            ${filtered.map(product => `
-
-              <tr>
-
-                <td>
-
-                  <div class="product-cell">
-
-                    ${
-                      product.image_url
-                      ?
-                      `<img
-                        src="${escapeHtml(product.image_url)}"
-                        class="product-thumb"
-                        alt="">`
-                      :
-                      `<div class="product-placeholder">
-                        🌱
-                      </div>`
-                    }
-
-                    <div class="product-name">
-                      ${escapeHtml(product.name || "")}
-                    </div>
-
-                  </div>
-
-                </td>
-
-                <td>
-                  ${escapeHtml(product.category || "—")}
-                </td>
-
-                <td>
-                  ${escapeHtml(product.unit || "—")}
-                </td>
-
-                <td>
-                  ${money(product.price)}
-                </td>
-
-                <td>
-                  ${Number(product.stock || 0)}
-                </td>
-
-                <td>
-
-                  ${
-                    product.is_available
-                    ?
-                    '<span class="badge badge-green">Available</span>'
-                    :
-                    '<span class="badge badge-red">Unavailable</span>'
-                  }
-
-                </td>
-
-                <td>
-
-                  ${
-                    product.is_active
-                    ?
-                    '<span class="badge badge-green">Active</span>'
-                    :
-                    '<span class="badge badge-gray">Hidden</span>'
-                  }
-
-                </td>
-
-                <td>
-
-                  <div class="actions">
-
-                    <button
-                      class="action-btn"
-                      onclick="editProduct(${product.id})">
-                      Edit
-                    </button>
-
-                    <button
-                      class="action-btn delete-btn"
-                      onclick="deleteProduct(${product.id})">
-                      Delete
-                    </button>
-
-                  </div>
-
-                </td>
-
-              </tr>
-
-            `).join("")}
-
-          </tbody>
-
-        </table>
-
-      </div>
-
-    `;
-
-  }
-
-
-  function updateStats() {
-
-    document
-      .getElementById("totalProducts")
-      .textContent =
-      products.length;
-
-
-    document
-      .getElementById("activeProducts")
-      .textContent =
-      products.filter(
-        p => p.is_active
-      ).length;
-
-
-    document
-      .getElementById("availableProducts")
-      .textContent =
-      products.filter(
-        p => p.is_available
-      ).length;
-
-
-    document
-      .getElementById("outProducts")
-      .textContent =
-      products.filter(
-        p =>
-          !p.is_available ||
-          Number(p.stock || 0) <= 0
-      ).length;
-
-  }
-
-
-  productSearch.addEventListener(
-    "input",
-    renderProducts
-  );
-
-
-  /* =========================================
-     ADD / EDIT MODAL
-  ========================================= */
-
-  document
-    .getElementById("addProductButton")
-    .addEventListener(
-      "click",
-      function() {
-
-        editingProduct = null;
-
-        existingImageUrl = null;
-
-        productForm.reset();
-
-        document
-          .getElementById("productAvailable")
-          .checked = true;
-
-        document
-          .getElementById("productActive")
-          .checked = true;
-
-        document
-          .getElementById("productStock")
-          .value = 0;
-
-        document
-          .getElementById("imagePreview")
-          .style.display = "none";
-
-        document
-          .getElementById("modalTitle")
-          .textContent =
-          "Add Product";
-
-        productModal.classList.add("show");
-
-      }
-    );
-
-
-  function editProduct(id) {
-
-    const product =
-      products.find(
-        item => item.id === id
-      );
-
-
-    if (!product) {
-      return;
-    }
-
-
-    editingProduct = product;
-
-    existingImageUrl =
-      product.image_url || null;
-
-
-    document
-      .getElementById("modalTitle")
-      .textContent =
-      "Edit Product";
-
-
-    document
-      .getElementById("productName")
-      .value =
-      product.name || "";
-
-
-    document
-      .getElementById("productCategory")
-      .value =
-      product.category || "";
-
-
-    document
-      .getElementById("productUnit")
-      .value =
-      product.unit || "";
-
-
-    document
-      .getElementById("productPrice")
-      .value =
-      product.price ?? "";
-
-
-    document
-      .getElementById("productStock")
-      .value =
-      product.stock ?? 0;
-
-
-    document
-      .getElementById("productDescription")
-      .value =
-      product.description || "";
-
-
-    document
-      .getElementById("productAvailable")
-      .checked =
-      product.is_available === true;
-
-
-    document
-      .getElementById("productActive")
-      .checked =
-      product.is_active === true;
-
-
-    const preview =
-      document.getElementById(
-        "imagePreview"
-      );
-
-
-    if (product.image_url) {
-
-      preview.src =
-        product.image_url;
-
-      preview.style.display =
-        "block";
-
-    } else {
-
-      preview.style.display =
-        "none";
-
-    }
-
-
-    document
-      .getElementById("productImage")
-      .value = "";
-
-
-    productModal.classList.add("show");
-
-  }
-
-
-  document
-    .getElementById("closeModal")
-    .addEventListener(
-      "click",
-      closeProductModal
-    );
-
-
-  document
-    .getElementById("cancelProduct")
-    .addEventListener(
-      "click",
-      closeProductModal
-    );
-
-
-  function closeProductModal() {
-
-    productModal.classList.remove("show");
-
-  }
-
-
-  productModal.addEventListener(
-    "click",
-    function(event) {
-
-      if (event.target === productModal) {
-        closeProductModal();
-      }
-
-    }
-  );
-
-
-  /* =========================================
-     IMAGE PREVIEW
-  ========================================= */
-
-  document
-    .getElementById("productImage")
-    .addEventListener(
-      "change",
-      function() {
-
-        const file =
-          this.files[0];
-
-        const preview =
-          document.getElementById(
-            "imagePreview"
-          );
-
-
-        if (!file) {
-
-          if (existingImageUrl) {
-
-            preview.src =
-              existingImageUrl;
-
-            preview.style.display =
-              "block";
-
-          } else {
-
-            preview.style.display =
-              "none";
-
-          }
-
-          return;
-
-        }
-
-
-        if (file.size > 5 * 1024 * 1024) {
-
-          showToast(
-            "Image must be 5 MB or smaller.",
-            true
-          );
-
-          this.value = "";
-
-          return;
-
-        }
-
-
-        preview.src =
-          URL.createObjectURL(file);
-
-        preview.style.display =
-          "block";
-
-      }
-    );
-
-
-  /* =========================================
-     SAVE PRODUCT
-  ========================================= */
-
-  productForm.addEventListener(
-    "submit",
-    async function(event) {
-
-      event.preventDefault();
-
-
-      const saveButton =
-        document.getElementById(
-          "saveProduct"
-        );
-
-
-      saveButton.disabled = true;
-
-      saveButton.textContent =
-        "Saving...";
-
-
-      try {
-
-        let imageUrl =
-          existingImageUrl;
-
-
-        const imageFile =
+        const email =
           document
-            .getElementById(
-              "productImage"
-            )
-            .files[0];
+            .getElementById("email")
+            .value
+            .trim();
+
+        const password =
+          document
+            .getElementById("password")
+            .value;
 
 
-        if (imageFile) {
+        try {
 
-          imageUrl =
-            await uploadProductImage(
-              imageFile
+          /* STEP 1: AUTHENTICATE */
+
+          const {
+            data: authData,
+            error: authError
+          } =
+            await supabaseClient
+              .auth
+              .signInWithPassword({
+                email,
+                password
+              });
+
+
+          if (authError) {
+
+            throw new Error(
+              "AUTH ERROR: " +
+              authError.message
             );
 
-        }
+          }
 
 
-        const payload = {
+          if (!authData.user) {
 
-          name:
-            document
-              .getElementById(
-                "productName"
-              )
-              .value
-              .trim(),
+            throw new Error(
+              "AUTH ERROR: No user was returned."
+            );
 
-          category:
-            document
-              .getElementById(
-                "productCategory"
-              )
-              .value
-              .trim(),
-
-          unit:
-            document
-              .getElementById(
-                "productUnit"
-              )
-              .value,
-
-          price:
-            Number(
-              document
-                .getElementById(
-                  "productPrice"
-                )
-                .value
-            ),
-
-          stock:
-            Number(
-              document
-                .getElementById(
-                  "productStock"
-                )
-                .value || 0
-            ),
-
-          image_url:
-            imageUrl,
-
-          description:
-            document
-              .getElementById(
-                "productDescription"
-              )
-              .value
-              .trim(),
-
-          is_available:
-            document
-              .getElementById(
-                "productAvailable"
-              )
-              .checked,
-
-          is_active:
-            document
-              .getElementById(
-                "productActive"
-              )
-              .checked,
-
-          updated_at:
-            new Date().toISOString()
-
-        };
+          }
 
 
-        let result;
+          /* STEP 2: GET PROFILE */
 
-
-        if (editingProduct) {
-
-          result =
+          const {
+            data: profile,
+            error: profileError
+          } =
             await supabaseClient
-              .from("products")
-              .update(payload)
+              .from("profiles")
+              .select(
+                "id, full_name, role, is_active"
+              )
               .eq(
                 "id",
-                editingProduct.id
-              );
+                authData.user.id
+              )
+              .maybeSingle();
 
-        } else {
 
-          result =
-            await supabaseClient
-              .from("products")
-              .insert(payload);
+          if (profileError) {
+
+            console.error(
+              "PROFILE ERROR:",
+              profileError
+            );
+
+            throw new Error(
+              "PROFILE ERROR: " +
+              profileError.message
+            );
+
+          }
+
+
+          if (!profile) {
+
+            throw new Error(
+              "PROFILE ERROR: Your login works, but no SourceUp profile was found for this account."
+            );
+
+          }
+
+
+          /* STEP 3: VERIFY ROLE */
+
+          console.log(
+            "SourceUp profile:",
+            profile
+          );
+
+
+          if (
+            String(profile.role).trim() !== "admin"
+          ) {
+
+            throw new Error(
+              "ACCESS ERROR: Your account role is \"" +
+              profile.role +
+              "\" instead of \"admin\"."
+            );
+
+          }
+
+
+          if (profile.is_active !== true) {
+
+            throw new Error(
+              "ACCESS ERROR: This administrator account is inactive."
+            );
+
+          }
+
+
+          /* SUCCESS */
+
+          showDashboard(profile);
+
+
+        } catch (error) {
+
+          console.error(
+            "SOURCEUP LOGIN ERROR:",
+            error
+          );
+
+          showError(
+            error.message ||
+            "Unknown login error."
+          );
+
+        } finally {
+
+          loginButton.disabled = false;
+          loginButton.textContent = "Sign In";
 
         }
 
-
-        if (result.error) {
-          throw result.error;
-        }
+      }
+    );
 
 
-        closeProductModal();
+    /* EXISTING SESSION */
 
-        showToast(
-          editingProduct
-          ? "Product updated."
-          : "Product added."
-        );
+    checkExistingSession();
 
 
-        await loadProducts();
+    async function checkExistingSession() {
+
+      const {
+        data: { session }
+      } =
+        await supabaseClient.auth.getSession();
 
 
-      } catch (error) {
+      if (!session) {
+        return;
+      }
 
-        showToast(
-          error.message ||
-          "Unable to save product.",
-          true
-        );
 
-      } finally {
+      const {
+        data: profile,
+        error
+      } =
+        await supabaseClient
+          .from("profiles")
+          .select(
+            "id, full_name, role, is_active"
+          )
+          .eq(
+            "id",
+            session.user.id
+          )
+          .maybeSingle();
 
-        saveButton.disabled = false;
 
-        saveButton.textContent =
-          "Save Product";
+      if (
+        !error &&
+        profile &&
+        String(profile.role).trim() === "admin" &&
+        profile.is_active === true
+      ) {
+
+        showDashboard(profile);
 
       }
 
     }
-  );
 
 
-  /* =========================================
-     IMAGE UPLOAD
-  ========================================= */
+    /* DASHBOARD */
 
-  async function uploadProductImage(file) {
+    function showDashboard(profile) {
 
-    const extension =
-      file.name
-        .split(".")
-        .pop()
-        .toLowerCase();
+      loginScreen.style.display = "none";
+      dashboard.style.display = "block";
 
 
-    const fileName =
-      `${Date.now()}-${crypto.randomUUID()}.${extension}`;
+      const name =
+        profile.full_name || "Admin";
 
 
-    const {
-      error
-    } =
-      await supabaseClient
-        .storage
-        .from("product-images")
-        .upload(
-          fileName,
-          file,
-          {
-            cacheControl:"3600",
-            upsert:false
-          }
-        );
-
-
-    if (error) {
-      throw error;
-    }
-
-
-    const {
-      data
-    } =
-      supabaseClient
-        .storage
-        .from("product-images")
-        .getPublicUrl(fileName);
-
-
-    return data.publicUrl;
-
-  }
-
-
-  /* =========================================
-     DELETE PRODUCT
-  ========================================= */
-
-  async function deleteProduct(id) {
-
-    const product =
-      products.find(
-        item => item.id === id
-      );
-
-
-    if (!product) {
-      return;
-    }
-
-
-    const confirmed =
-      confirm(
-        `Delete "${product.name}"?\n\nThis cannot be undone.`
-      );
-
-
-    if (!confirmed) {
-      return;
-    }
-
-
-    const {
-      error
-    } =
-      await supabaseClient
-        .from("products")
-        .delete()
-        .eq("id", id);
-
-
-    if (error) {
-
-      showToast(
-        error.message,
-        true
-      );
-
-      return;
+      document
+        .getElementById("welcomeName")
+        .textContent =
+        "Welcome, " + name;
 
     }
 
 
-    showToast(
-      "Product deleted."
-    );
+    /* LOGOUT */
 
+    document
+      .getElementById("logoutButton")
+      .addEventListener(
+        "click",
+        async function() {
 
-    await loadProducts();
+          await supabaseClient.auth.signOut();
 
-  }
+          location.reload();
 
-
-  /* =========================================
-     HELPERS
-  ========================================= */
-
-  function money(value) {
-
-    const number =
-      Number(value || 0);
-
-
-    return "₱" +
-      number.toLocaleString(
-        "en-PH",
-        {
-          minimumFractionDigits:2,
-          maximumFractionDigits:2
         }
       );
 
-  }
+
+    /* MESSAGE */
+
+    function showError(text) {
+
+      message.className =
+        "message error";
+
+      message.textContent =
+        text;
+
+    }
 
 
-  function escapeHtml(value) {
+    function clearMessage() {
 
-    return String(value)
-      .replaceAll("&","&amp;")
-      .replaceAll("<","&lt;")
-      .replaceAll(">","&gt;")
-      .replaceAll('"',"&quot;")
-      .replaceAll("'","&#039;");
+      message.className =
+        "message";
 
-  }
+      message.textContent = "";
 
+    }
 
-  let toastTimer;
-
-
-  function showToast(
-    message,
-    isError = false
-  ) {
-
-    toast.textContent =
-      message;
-
-    toast.classList.toggle(
-      "error",
-      isError
-    );
-
-    toast.classList.add("show");
-
-
-    clearTimeout(toastTimer);
-
-
-    toastTimer =
-      setTimeout(
-        function() {
-
-          toast.classList.remove(
-            "show"
-          );
-
-        },
-        2600
-      );
-
-  }
-
-</script>
+  </script>
 
 </body>
 </html>
