@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Checkout | SourceUp</title>
+  <link rel="icon" type="image/png" href="favicon.png">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --forest: #174A32;
+      --green: #2F7D4E;
+      --green-hover: #25643E;
+      --lime: #B9D86B;
+      --cream: #F7F5EC;
+      --soft-green: #EDF4E8;
+      --white: #FFFFFF;
+      --ink: #17231C;
+      --muted: #647168;
+      --border: #DDE5DD;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: "DM Sans", sans-serif;
+      background: #FAFCF9;
+      color: var(--ink);
+    }
+
+    h1, h2, h3 {
+      font-family: "Manrope", sans-serif;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    header {
+      height: 82px;
+      padding: 0 6%;
+      background: white;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      height: 46px;
+      max-width: 180px;
+      object-fit: contain;
+    }
+
+    .back {
+      font-weight: 700;
+      color: var(--forest);
+      font-size: 14px;
+    }
+
+    .page {
+      max-width: 1200px;
+      margin: auto;
+      padding: 55px 6% 100px;
+    }
+
+    .page-title {
+      margin-bottom: 35px;
+    }
+
+    .eyebrow {
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 1.3px;
+      margin-bottom: 7px;
+    }
+
+    .page-title h1 {
+      font-size: clamp(34px,5vw,48px);
+      letter-spacing: -1.5px;
+    }
+
+    .page-title p {
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    .checkout-grid {
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: 30px;
+      align-items: start;
+    }
+
+    .card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+    }
+
+    .card h2 {
+      font-size: 21px;
+      margin-bottom: 22px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 17px;
+    }
+
+    .field.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      margin-bottom: 7px;
+    }
+
+    input,
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      padding: 13px 14px;
+      font-family: inherit;
+      outline: none;
+      background: white;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: var(--green);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 95px;
+    }
+
+    .order-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 15px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .order-name {
+      font-weight: 700;
+    }
+
+    .order-meta {
+      color: var(--muted);
+      font-size: 12px;
+      margin-top: 3px;
+    }
+
+    .order-price {
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .total-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 20px;
+    }
+
+    .total {
+      font-size: 25px;
+      font-weight: 800;
+      color: var(--forest);
+    }
+
+    .place-order {
+      width: 100%;
+      border: 0;
+      border-radius: 9px;
+      padding: 15px;
+      margin-top: 23px;
+      background: var(--green);
+      color: white;
+      font-weight: 800;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .place-order:hover {
+      background: var(--green-hover);
+    }
+
+    .notice {
+      background: var(--soft-green);
+      color: var(--forest);
+      border-radius: 9px;
+      padding: 13px;
+      margin-top: 15px;
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .empty {
+      color: var(--muted);
+      text-align: center;
+      padding: 30px 10px;
+    }
+
+    @media(max-width:800px) {
+      .checkout-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media(max-width:600px) {
+      header {
+        padding: 0 5%;
+      }
+
+      .logo {
+        height: 39px;
+        max-width: 140px;
+      }
+
+      .page {
+        padding-left: 5%;
+        padding-right: 5%;
+      }
+
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .field.full {
+        grid-column: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <a href="index.html">
+    <img src="logo.png" class="logo" alt="SourceUp">
+  </a>
+
+  <a href="products.html" class="back">
+    ← Back to Products
+  </a>
+</header>
+
+
+<main class="page">
+
+  <div class="page-title">
+    <div class="eyebrow">SourceUp Checkout</div>
+    <h1>Complete your order.</h1>
+    <p>Enter your business and delivery details below.</p>
+  </div>
+
+
+  <div class="checkout-grid">
+
+    <section class="card">
+
+      <h2>Buyer Information</h2>
+
+      <form id="checkoutForm">
+
+        <div class="form-grid">
+
+          <div class="field">
+            <label>Contact Person *</label>
+            <input id="name" type="text" required placeholder="Juan Dela Cruz">
+          </div>
+
+          <div class="field">
+            <label>Business Name *</label>
+            <input id="business" type="text" required placeholder="Juan's Restaurant">
+          </div>
+
+          <div class="field">
+            <label>Mobile Number *</label>
+            <input id="mobile" type="tel" required placeholder="09XXXXXXXXX">
+          </div>
+
+          <div class="field">
+            <label>Email</label>
+            <input id="email" type="email" placeholder="business@email.com">
+          </div>
+
+          <div class="field full">
+            <label>Delivery Address *</label>
+            <textarea id="address" required placeholder="Complete delivery address"></textarea>
+          </div>
+
+          <div class="field">
+            <label>Preferred Delivery Date *</label>
+            <input id="deliveryDate" type="date" required>
+          </div>
+
+          <div class="field">
+            <label>Payment Method *</label>
+
+            <select id="payment" required>
+              <option value="">Select payment method</option>
+              <option>Cash on Delivery</option>
+              <option>GCash</option>
+              <option>Bank Transfer</option>
+            </select>
+
+          </div>
+
+          <div class="field full">
+            <label>Order Notes</label>
+            <textarea id="notes" placeholder="Special instructions, preferred delivery time, etc."></textarea>
+          </div>
+
+        </div>
+
+      </form>
+
+    </section>
+
+
+    <aside class="card">
+
+      <h2>Order Summary</h2>
+
+      <div id="orderItems"></div>
+
+      <div class="total-row">
+        <strong>Total</strong>
+        <div class="total" id="orderTotal">₱0.00</div>
+      </div>
+
+      <button
+        class="place-order"
+        type="submit"
+        form="checkoutForm">
+        Submit Order Request
+      </button>
+
+      <div class="notice">
+        Your order is not final until SourceUp confirms product availability,
+        final pricing, and delivery details.
+      </div>
+
+    </aside>
+
+  </div>
+
+</main>
+
+
+<script>
+
+const cart =
+  JSON.parse(localStorage.getItem("sourceupCart")) || [];
+
+
+function money(value) {
+
+  return "₱" + value.toLocaleString("en-PH", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2
+  });
+
+}
+
+
+function renderOrder() {
+
+  const container =
+    document.getElementById("orderItems");
+
+
+  if (!cart.length) {
+
+    container.innerHTML =
+      '<div class="empty">Your cart is empty.<br><br><a href="products.html" style="color:#2F7D4E;font-weight:700;">Browse Products</a></div>';
+
+    document.getElementById("orderTotal").textContent =
+      money(0);
+
+    return;
+
+  }
+
+
+  container.innerHTML = cart.map(item => `
+
+    <div class="order-item">
+
+      <div>
+
+        <div class="order-name">
+          ${item.name}
+        </div>
+
+        <div class="order-meta">
+          ${item.quantity} ${item.unit}
+          ×
+          ${money(item.price)}
+        </div>
+
+      </div>
+
+      <div class="order-price">
+        ${money(item.price * item.quantity)}
+      </div>
+
+    </div>
+
+  `).join("");
+
+
+  const total =
+    cart.reduce(
+      (sum,item) =>
+        sum + item.price * item.quantity,
+      0
+    );
+
+
+  document.getElementById("orderTotal").textContent =
+    money(total);
+
+}
+
+
+document
+  .getElementById("checkoutForm")
+  .addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+
+    if (!cart.length) {
+
+      alert("Your cart is empty.");
+
+      return;
+
+    }
+
+
+    alert(
+      "Order details are complete! Next natin iko-connect ito sa actual SourceUp order database."
+    );
+
+  });
+
+
+renderOrder();
+
+</script>
+
+</body>
+</html>
