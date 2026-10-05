@@ -4,154 +4,488 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>SourceUp | Fresh. Direct. Better.</title>
+  <title>SourceUp | Fresh Supply, Smarter Sourcing</title>
+  <meta name="description"
+        content="SourceUp makes fresh produce sourcing simpler, more affordable, and more rewarding for businesses.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
+        rel="stylesheet">
 
   <style>
+    :root {
+      --forest: #174A32;
+      --green: #2F7D4E;
+      --green-hover: #25643E;
+      --lime: #B9D86B;
+      --cream: #F7F5EC;
+      --soft-green: #EDF4E8;
+      --white: #FFFFFF;
+      --ink: #17231C;
+      --muted: #647168;
+      --border: #DDE5DD;
+    }
+
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
     }
 
     body {
-      font-family: Arial, sans-serif;
-      background: #f7f8f4;
-      color: #1f2a22;
+      font-family: "DM Sans", sans-serif;
+      color: var(--ink);
+      background: var(--white);
+      line-height: 1.6;
     }
+
+    h1, h2, h3, .brand-name {
+      font-family: "Manrope", sans-serif;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* ================= HEADER ================= */
 
     header {
-      background: #ffffff;
-      padding: 18px 7%;
+      height: 84px;
+      background: rgba(255,255,255,.96);
+      border-bottom: 1px solid var(--border);
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      border-bottom: 1px solid #e5e5e5;
+      justify-content: space-between;
+      padding: 0 7%;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
     }
 
-    .logo {
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+    }
+
+    .brand img {
+      height: 48px;
+      width: auto;
+      display: block;
+    }
+
+    .brand-name {
+      color: var(--forest);
       font-size: 28px;
       font-weight: 800;
-      color: #245c3a;
+      letter-spacing: -1px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 34px;
     }
 
     nav a {
-      text-decoration: none;
-      color: #333;
-      margin-left: 25px;
-      font-size: 14px;
+      font-weight: 600;
+      font-size: 15px;
+      transition: .2s;
     }
+
+    nav a:hover {
+      color: var(--green);
+    }
+
+    .nav-login {
+      padding: 10px 18px;
+      border: 1px solid var(--forest);
+      border-radius: 8px;
+    }
+
+    /* ================= HERO ================= */
 
     .hero {
-      min-height: 75vh;
+      min-height: 680px;
+      padding: 95px 7%;
+      background:
+        radial-gradient(circle at 85% 25%, rgba(185,216,107,.28), transparent 25%),
+        linear-gradient(135deg, var(--cream), #F8FBF6);
       display: flex;
       align-items: center;
-      padding: 60px 8%;
-      background: linear-gradient(135deg, #eef5e9, #ffffff);
     }
 
-    .hero-content {
-      max-width: 650px;
+    .hero-inner {
+      width: 100%;
+      max-width: 1200px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      align-items: center;
+      gap: 70px;
     }
 
-    .tag {
-      display: inline-block;
-      background: #dcebd6;
-      color: #245c3a;
-      padding: 8px 14px;
-      border-radius: 30px;
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #DFEDD7;
+      color: var(--forest);
+      padding: 8px 15px;
+      border-radius: 999px;
       font-size: 13px;
-      font-weight: bold;
-      margin-bottom: 20px;
+      font-weight: 700;
+      letter-spacing: .4px;
+      margin-bottom: 25px;
     }
 
-    h1 {
-      font-size: 58px;
-      line-height: 1.05;
-      margin-bottom: 20px;
+    .eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--green);
+      border-radius: 50%;
     }
 
-    h1 span {
-      color: #2e7549;
+    .hero h1 {
+      font-size: clamp(48px, 6vw, 76px);
+      line-height: 1.03;
+      letter-spacing: -3px;
+      margin-bottom: 24px;
+      max-width: 760px;
     }
 
-    .hero p {
-      font-size: 18px;
-      line-height: 1.6;
-      color: #5c655f;
-      margin-bottom: 30px;
+    .hero h1 span {
+      color: var(--green);
+    }
+
+    .hero-copy {
+      max-width: 650px;
+      color: var(--muted);
+      font-size: 19px;
+      margin-bottom: 34px;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
     }
 
     .btn {
-      display: inline-block;
-      background: #2e7549;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 54px;
+      padding: 0 24px;
+      border-radius: 9px;
+      font-weight: 700;
+      transition: .2s ease;
+    }
+
+    .btn-primary {
+      background: var(--green);
       color: white;
-      text-decoration: none;
-      padding: 15px 25px;
-      border-radius: 8px;
-      font-weight: bold;
-      margin-right: 10px;
+    }
+
+    .btn-primary:hover {
+      background: var(--green-hover);
+      transform: translateY(-2px);
     }
 
     .btn-secondary {
       background: white;
-      color: #2e7549;
-      border: 1px solid #2e7549;
+      color: var(--forest);
+      border: 1px solid var(--forest);
     }
 
-    .features {
-      padding: 70px 8%;
+    .btn-secondary:hover {
+      background: var(--soft-green);
+    }
+
+    /* HERO CARD */
+
+    .hero-card {
       background: white;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: 0 25px 70px rgba(23,74,50,.10);
+    }
+
+    .hero-card-label {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 20px;
+    }
+
+    .produce-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 17px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .produce-row:last-child {
+      border-bottom: 0;
+    }
+
+    .produce-info {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .produce-icon {
+      width: 46px;
+      height: 46px;
+      background: var(--soft-green);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+
+    .produce-name {
+      font-weight: 700;
+    }
+
+    .produce-sub {
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    .available {
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    /* ================= VALUE STRIP ================= */
+
+    .value-strip {
+      background: var(--forest);
+      color: white;
+      padding: 22px 7%;
+    }
+
+    .value-inner {
+      max-width: 1100px;
+      margin: auto;
+      display: flex;
+      justify-content: space-around;
+      gap: 25px;
+      flex-wrap: wrap;
       text-align: center;
     }
 
-    .features h2 {
-      font-size: 34px;
-      margin-bottom: 40px;
+    .value-item strong {
+      color: var(--lime);
+    }
+
+    /* ================= SECTIONS ================= */
+
+    section.content {
+      padding: 95px 7%;
+    }
+
+    .section-head {
+      max-width: 680px;
+      margin: 0 auto 55px;
+      text-align: center;
+    }
+
+    .section-label {
+      color: var(--green);
+      text-transform: uppercase;
+      font-size: 13px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      margin-bottom: 10px;
+    }
+
+    .section-head h2 {
+      font-size: 42px;
+      line-height: 1.15;
+      letter-spacing: -1.5px;
+      margin-bottom: 14px;
+    }
+
+    .section-head p {
+      color: var(--muted);
     }
 
     .feature-grid {
+      max-width: 1150px;
+      margin: auto;
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 25px;
+      gap: 22px;
+    }
+
+    .feature-card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      transition: .2s;
+      background: white;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(23,74,50,.08);
+    }
+
+    .feature-number {
+      width: 45px;
+      height: 45px;
+      background: var(--soft-green);
+      color: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 12px;
+      font-weight: 800;
+      margin-bottom: 23px;
+    }
+
+    .feature-card h3 {
+      font-size: 21px;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    /* ================= REWARDS ================= */
+
+    .rewards {
+      background: var(--cream);
+    }
+
+    .rewards-box {
       max-width: 1100px;
       margin: auto;
+      background: var(--forest);
+      border-radius: 24px;
+      padding: 55px;
+      color: white;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
     }
 
-    .card {
-      background: #f7f8f4;
-      padding: 35px 25px;
-      border-radius: 12px;
-      text-align: left;
+    .rewards-box h2 {
+      font-size: 42px;
+      line-height: 1.15;
+      margin-bottom: 15px;
     }
 
-    .card h3 {
-      color: #2e7549;
-      margin-bottom: 12px;
+    .rewards-box p {
+      color: #D7E4DB;
     }
 
-    .card p {
-      color: #666;
-      line-height: 1.5;
+    .reward-list {
+      display: grid;
+      gap: 12px;
     }
+
+    .reward-item {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
+      padding: 16px 18px;
+      border-radius: 10px;
+    }
+
+    .reward-item strong {
+      color: var(--lime);
+    }
+
+    /* ================= CTA ================= */
+
+    .cta {
+      text-align: center;
+      padding: 90px 7%;
+    }
+
+    .cta h2 {
+      font-size: 43px;
+      margin-bottom: 14px;
+    }
+
+    .cta p {
+      color: var(--muted);
+      margin: 0 auto 28px;
+      max-width: 580px;
+    }
+
+    /* ================= FOOTER ================= */
 
     footer {
-      background: #183d29;
-      color: white;
-      text-align: center;
-      padding: 25px;
+      background: #102E20;
+      color: #D6E1D9;
+      padding: 40px 7%;
     }
 
-    @media (max-width: 768px) {
-      nav {
+    .footer-inner {
+      max-width: 1150px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    footer strong {
+      color: white;
+      font-family: "Manrope", sans-serif;
+      font-size: 21px;
+    }
+
+    /* ================= MOBILE ================= */
+
+    @media (max-width: 850px) {
+      nav a:not(.nav-login) {
         display: none;
       }
 
-      h1 {
-        font-size: 42px;
+      header {
+        padding: 0 5%;
+      }
+
+      .hero {
+        padding: 70px 6%;
+      }
+
+      .hero-inner,
+      .rewards-box {
+        grid-template-columns: 1fr;
+      }
+
+      .hero h1 {
+        letter-spacing: -2px;
       }
 
       .feature-grid {
         grid-template-columns: 1fr;
+      }
+
+      .rewards-box {
+        padding: 35px 25px;
       }
     }
   </style>
@@ -160,74 +494,284 @@
 <body>
 
 <header>
-  <div class="logo">SourceUp</div>
+
+  <a href="#" class="brand">
+    <!-- Kapag may logo.png na sa repository, automatic itong lalabas -->
+    <img
+      src="logo.png"
+      alt="SourceUp Logo"
+      onerror="this.style.display='none'; document.getElementById('brandFallback').style.display='block';"
+    >
+
+    <span id="brandFallback" class="brand-name" style="display:none;">
+      SourceUp
+    </span>
+  </a>
 
   <nav>
-    <a href="#">Home</a>
-    <a href="#">Products</a>
-    <a href="#">How It Works</a>
-    <a href="#">Rewards</a>
-    <a href="#">Login</a>
+    <a href="#home">Home</a>
+    <a href="#products">Products</a>
+    <a href="#how">How It Works</a>
+    <a href="#rewards">Rewards</a>
+    <a href="#" class="nav-login">Login</a>
   </nav>
+
 </header>
 
-<section class="hero">
-  <div class="hero-content">
+<main>
 
-    <div class="tag">DIRECT SOURCING • BETTER PRICES</div>
+  <!-- HERO -->
 
-    <h1>
-      Fresh products.<br>
-      <span>Better source.</span>
-    </h1>
+  <section class="hero" id="home">
+
+    <div class="hero-inner">
+
+      <div>
+
+        <div class="eyebrow">
+          <span class="eyebrow-dot"></span>
+          SMARTER SOURCING FOR EVERYDAY BUSINESS
+        </div>
+
+        <h1>
+          Fresh supply.<br>
+          <span>Better source.</span>
+        </h1>
+
+        <p class="hero-copy">
+          SourceUp makes sourcing fresh produce simpler for businesses.
+          Get reliable supplies, competitive pricing, convenient ordering,
+          and rewards every time you grow with us.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#products" class="btn btn-primary">Browse Products →</a>
+          <a href="#" class="btn btn-secondary">Create Buyer Account</a>
+        </div>
+
+      </div>
+
+      <div class="hero-card">
+
+        <div class="hero-card-label">Fresh supply today</div>
+
+        <div class="produce-row">
+          <div class="produce-info">
+            <div class="produce-icon">🥬</div>
+            <div>
+              <div class="produce-name">Leafy Vegetables</div>
+              <div class="produce-sub">Fresh market supply</div>
+            </div>
+          </div>
+          <div class="available">Available</div>
+        </div>
+
+        <div class="produce-row">
+          <div class="produce-info">
+            <div class="produce-icon">🍅</div>
+            <div>
+              <div class="produce-name">Tomatoes</div>
+              <div class="produce-sub">Business quantities</div>
+            </div>
+          </div>
+          <div class="available">Available</div>
+        </div>
+
+        <div class="produce-row">
+          <div class="produce-info">
+            <div class="produce-icon">🥕</div>
+            <div>
+              <div class="produce-name">Root Crops</div>
+              <div class="produce-sub">Direct sourcing</div>
+            </div>
+          </div>
+          <div class="available">Available</div>
+        </div>
+
+        <div class="produce-row">
+          <div class="produce-info">
+            <div class="produce-icon">🧅</div>
+            <div>
+              <div class="produce-name">Kitchen Essentials</div>
+              <div class="produce-sub">Regular supply</div>
+            </div>
+          </div>
+          <div class="available">Available</div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- VALUE STRIP -->
+
+  <div class="value-strip">
+    <div class="value-inner">
+
+      <div class="value-item">
+        <strong>Better pricing</strong><br>
+        Smarter sourcing
+      </div>
+
+      <div class="value-item">
+        <strong>Convenient</strong><br>
+        Business ordering
+      </div>
+
+      <div class="value-item">
+        <strong>Earn rewards</strong><br>
+        On qualified purchases
+      </div>
+
+      <div class="value-item">
+        <strong>Refer & earn</strong><br>
+        Grow the SourceUp network
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WHY SOURCEUP -->
+
+  <section class="content" id="how">
+
+    <div class="section-head">
+      <div class="section-label">Why SourceUp</div>
+
+      <h2>Spend less time sourcing. Focus more on your business.</h2>
+
+      <p>
+        Built for businesses that need dependable everyday supplies
+        without unnecessary sourcing hassle.
+      </p>
+    </div>
+
+    <div class="feature-grid">
+
+      <div class="feature-card">
+        <div class="feature-number">01</div>
+        <h3>Competitive Pricing</h3>
+        <p>
+          We simplify the supply chain to help businesses access better
+          prices without sacrificing convenience.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-number">02</div>
+        <h3>Convenient Sourcing</h3>
+        <p>
+          Skip repeated market trips. Order the products your business
+          needs through one simple sourcing platform.
+        </p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-number">03</div>
+        <h3>Built for Repeat Buyers</h3>
+        <p>
+          Your purchases can unlock points, benefits and account rewards
+          designed for loyal SourceUp buyers.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- PRODUCTS PLACEHOLDER -->
+
+  <section class="content" id="products" style="background:#FAFCF9;">
+
+    <div class="section-head">
+      <div class="section-label">Marketplace</div>
+      <h2>Everyday supplies from a better source.</h2>
+      <p>
+        Our product catalog and live pricing will be available here.
+      </p>
+    </div>
+
+  </section>
+
+  <!-- REWARDS -->
+
+  <section class="content rewards" id="rewards">
+
+    <div class="rewards-box">
+
+      <div>
+        <div class="section-label" style="color:var(--lime);">
+          SourceUp Rewards
+        </div>
+
+        <h2>Your purchases should give something back.</h2>
+
+        <p>
+          Qualified buyers earn points through purchases and referrals,
+          with better benefits as their relationship with SourceUp grows.
+        </p>
+      </div>
+
+      <div class="reward-list">
+
+        <div class="reward-item">
+          ✓ Earn points on <strong>qualified purchases</strong>
+        </div>
+
+        <div class="reward-item">
+          ✓ Earn from <strong>eligible referrals</strong>
+        </div>
+
+        <div class="reward-item">
+          ✓ Unlock <strong>higher reward levels</strong>
+        </div>
+
+        <div class="reward-item">
+          ✓ Redeem rewards without complicated mechanics
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- CTA -->
+
+  <section class="cta">
+
+    <h2>Ready to source smarter?</h2>
 
     <p>
-      SourceUp connects businesses and buyers directly to reliable
-      suppliers—making everyday sourcing simpler, more convenient,
-      and more affordable.
+      Join SourceUp and make everyday business sourcing simpler,
+      more affordable and more rewarding.
     </p>
 
-    <a class="btn" href="#">Shop Products</a>
-    <a class="btn btn-secondary" href="#">Become a Buyer</a>
+    <a href="#" class="btn btn-primary">
+      Create Buyer Account →
+    </a>
 
-  </div>
-</section>
+  </section>
 
-<section class="features">
-
-  <h2>Why SourceUp?</h2>
-
-  <div class="feature-grid">
-
-    <div class="card">
-      <h3>Lower Prices</h3>
-      <p>
-        Smarter sourcing means fewer unnecessary markups and better
-        prices for your everyday supply needs.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>Convenient Delivery</h3>
-      <p>
-        Order what your business needs without spending hours going
-        to the market yourself.
-      </p>
-    </div>
-
-    <div class="card">
-      <h3>SourceUp Rewards</h3>
-      <p>
-        Earn points from qualified purchases and referrals and unlock
-        better rewards as your account grows.
-      </p>
-    </div>
-
-  </div>
-</section>
+</main>
 
 <footer>
-  © 2026 SourceUp. Fresh. Direct. Better.
+
+  <div class="footer-inner">
+
+    <div>
+      <strong>SourceUp</strong><br>
+      Fresh supply. Smarter sourcing.
+    </div>
+
+    <div>
+      © 2026 SourceUp. All rights reserved.
+    </div>
+
+  </div>
+
 </footer>
 
 </body>
