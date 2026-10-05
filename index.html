@@ -5,14 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>SourceUp | Fresh Supply, Smarter Sourcing</title>
-  <meta name="description"
-        content="SourceUp makes fresh produce sourcing simpler, more affordable, and more rewarding for businesses.">
+  <meta name="description" content="SourceUp makes fresh produce sourcing simpler, more affordable, and more rewarding for businesses.">
 
-  <!-- Google Fonts -->
+  <!-- FAVICON -->
+  <link rel="icon" type="image/png" href="logo.png">
+
+  <!-- FONTS -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap"
-        rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
@@ -26,6 +27,7 @@
       --ink: #17231C;
       --muted: #647168;
       --border: #DDE5DD;
+      --shadow: 0 18px 45px rgba(23,74,50,.09);
     }
 
     * {
@@ -54,10 +56,14 @@
       color: inherit;
     }
 
+    button {
+      font-family: inherit;
+    }
+
     /* ================= HEADER ================= */
 
     header {
-      height: 84px;
+      min-height: 84px;
       background: rgba(255,255,255,.96);
       border-bottom: 1px solid var(--border);
       display: flex;
@@ -67,36 +73,38 @@
       position: sticky;
       top: 0;
       z-index: 1000;
+      backdrop-filter: blur(10px);
     }
 
     .brand {
       display: flex;
       align-items: center;
-      gap: 11px;
+      gap: 10px;
     }
 
     .brand img {
       height: 48px;
       width: auto;
+      max-width: 180px;
+      object-fit: contain;
       display: block;
     }
 
     .brand-name {
       color: var(--forest);
-      font-size: 28px;
+      font-size: 27px;
       font-weight: 800;
-      letter-spacing: -1px;
     }
 
     nav {
       display: flex;
       align-items: center;
-      gap: 34px;
+      gap: 30px;
     }
 
     nav a {
+      font-size: 14px;
       font-weight: 600;
-      font-size: 15px;
       transition: .2s;
     }
 
@@ -105,19 +113,28 @@
     }
 
     .nav-login {
-      padding: 10px 18px;
       border: 1px solid var(--forest);
       border-radius: 8px;
+      padding: 9px 17px;
+    }
+
+    .menu-button {
+      display: none;
+      background: transparent;
+      border: 0;
+      font-size: 28px;
+      cursor: pointer;
+      color: var(--forest);
     }
 
     /* ================= HERO ================= */
 
     .hero {
       min-height: 680px;
-      padding: 95px 7%;
+      padding: 90px 7%;
       background:
-        radial-gradient(circle at 85% 25%, rgba(185,216,107,.28), transparent 25%),
-        linear-gradient(135deg, var(--cream), #F8FBF6);
+        radial-gradient(circle at 85% 25%, rgba(185,216,107,.27), transparent 25%),
+        linear-gradient(135deg, var(--cream), #F9FCF7);
       display: flex;
       align-items: center;
     }
@@ -127,9 +144,9 @@
       max-width: 1200px;
       margin: auto;
       display: grid;
-      grid-template-columns: 1.15fr .85fr;
-      align-items: center;
+      grid-template-columns: 1.12fr .88fr;
       gap: 70px;
+      align-items: center;
     }
 
     .eyebrow {
@@ -140,9 +157,9 @@
       color: var(--forest);
       padding: 8px 15px;
       border-radius: 999px;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: .4px;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .5px;
       margin-bottom: 25px;
     }
 
@@ -158,7 +175,6 @@
       line-height: 1.03;
       letter-spacing: -3px;
       margin-bottom: 24px;
-      max-width: 760px;
     }
 
     .hero h1 span {
@@ -168,8 +184,8 @@
     .hero-copy {
       max-width: 650px;
       color: var(--muted);
-      font-size: 19px;
-      margin-bottom: 34px;
+      font-size: 18px;
+      margin-bottom: 32px;
     }
 
     .hero-actions {
@@ -180,13 +196,15 @@
 
     .btn {
       display: inline-flex;
-      justify-content: center;
       align-items: center;
-      min-height: 54px;
-      padding: 0 24px;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 23px;
       border-radius: 9px;
       font-weight: 700;
-      transition: .2s ease;
+      border: none;
+      cursor: pointer;
+      transition: .2s;
     }
 
     .btn-primary {
@@ -209,29 +227,44 @@
       background: var(--soft-green);
     }
 
-    /* HERO CARD */
+    /* ================= HERO MARKET CARD ================= */
 
     .hero-card {
       background: white;
       border: 1px solid var(--border);
       border-radius: 24px;
       padding: 30px;
-      box-shadow: 0 25px 70px rgba(23,74,50,.10);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 18px;
     }
 
     .hero-card-label {
       color: var(--muted);
-      font-size: 13px;
-      font-weight: 700;
-      text-transform: uppercase;
+      font-size: 12px;
+      font-weight: 800;
       letter-spacing: 1px;
-      margin-bottom: 20px;
+      text-transform: uppercase;
+    }
+
+    .live-badge {
+      background: var(--soft-green);
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 800;
+      padding: 6px 9px;
+      border-radius: 999px;
     }
 
     .produce-row {
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
       padding: 17px 0;
       border-bottom: 1px solid var(--border);
     }
@@ -262,14 +295,14 @@
     }
 
     .produce-sub {
-      font-size: 13px;
       color: var(--muted);
+      font-size: 12px;
     }
 
     .available {
       color: var(--green);
-      font-size: 13px;
-      font-weight: 700;
+      font-size: 12px;
+      font-weight: 800;
     }
 
     /* ================= VALUE STRIP ================= */
@@ -283,40 +316,44 @@
     .value-inner {
       max-width: 1100px;
       margin: auto;
-      display: flex;
-      justify-content: space-around;
-      gap: 25px;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
       text-align: center;
+    }
+
+    .value-item {
+      font-size: 14px;
     }
 
     .value-item strong {
       color: var(--lime);
+      font-size: 15px;
     }
 
-    /* ================= SECTIONS ================= */
+    /* ================= GENERAL ================= */
 
-    section.content {
+    .content {
       padding: 95px 7%;
     }
 
     .section-head {
-      max-width: 680px;
-      margin: 0 auto 55px;
+      max-width: 700px;
+      margin: 0 auto 50px;
       text-align: center;
     }
 
     .section-label {
       color: var(--green);
-      text-transform: uppercase;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 800;
       letter-spacing: 1.5px;
+      text-transform: uppercase;
       margin-bottom: 10px;
     }
 
     .section-head h2 {
-      font-size: 42px;
+      font-size: clamp(34px, 4vw, 44px);
       line-height: 1.15;
       letter-spacing: -1.5px;
       margin-bottom: 14px;
@@ -325,6 +362,104 @@
     .section-head p {
       color: var(--muted);
     }
+
+    /* ================= PRODUCTS ================= */
+
+    .products-section {
+      background: #FAFCF9;
+    }
+
+    .product-grid {
+      max-width: 1150px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+    }
+
+    .product-card {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: .2s;
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+
+    .product-image {
+      height: 170px;
+      background: var(--soft-green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 72px;
+    }
+
+    .product-body {
+      padding: 20px;
+    }
+
+    .product-category {
+      color: var(--green);
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: .8px;
+      margin-bottom: 5px;
+    }
+
+    .product-card h3 {
+      font-size: 18px;
+      margin-bottom: 4px;
+    }
+
+    .product-unit {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 17px;
+    }
+
+    .product-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .price {
+      font-weight: 800;
+      color: var(--forest);
+    }
+
+    .price small {
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .add-button {
+      border: none;
+      background: var(--green);
+      color: white;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      font-size: 21px;
+      cursor: pointer;
+    }
+
+    .catalog-note {
+      max-width: 1150px;
+      margin: 25px auto 0;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: center;
+    }
+
+    /* ================= HOW IT WORKS ================= */
 
     .feature-grid {
       max-width: 1150px;
@@ -338,13 +473,13 @@
       border: 1px solid var(--border);
       border-radius: 16px;
       padding: 32px;
-      transition: .2s;
       background: white;
+      transition: .2s;
     }
 
     .feature-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(23,74,50,.08);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
     }
 
     .feature-number {
@@ -352,27 +487,27 @@
       height: 45px;
       background: var(--soft-green);
       color: var(--green);
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 12px;
       font-weight: 800;
-      margin-bottom: 23px;
+      margin-bottom: 22px;
     }
 
     .feature-card h3 {
-      font-size: 21px;
+      font-size: 20px;
       margin-bottom: 10px;
     }
 
     .feature-card p {
       color: var(--muted);
-      font-size: 15px;
+      font-size: 14px;
     }
 
     /* ================= REWARDS ================= */
 
-    .rewards {
+    .rewards-section {
       background: var(--cream);
     }
 
@@ -380,9 +515,9 @@
       max-width: 1100px;
       margin: auto;
       background: var(--forest);
+      color: white;
       border-radius: 24px;
       padding: 55px;
-      color: white;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 60px;
@@ -390,12 +525,12 @@
     }
 
     .rewards-box h2 {
-      font-size: 42px;
+      font-size: clamp(34px, 4vw, 43px);
       line-height: 1.15;
       margin-bottom: 15px;
     }
 
-    .rewards-box p {
+    .rewards-copy {
       color: #D7E4DB;
     }
 
@@ -405,9 +540,9 @@
     }
 
     .reward-item {
+      padding: 16px 18px;
       background: rgba(255,255,255,.08);
       border: 1px solid rgba(255,255,255,.12);
-      padding: 16px 18px;
       border-radius: 10px;
     }
 
@@ -415,22 +550,73 @@
       color: var(--lime);
     }
 
+    /* ================= REFERRAL ================= */
+
+    .referral {
+      max-width: 1100px;
+      margin: auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .referral h2 {
+      font-size: clamp(34px, 4vw, 43px);
+      line-height: 1.15;
+      margin-bottom: 15px;
+    }
+
+    .referral p {
+      color: var(--muted);
+      margin-bottom: 25px;
+    }
+
+    .referral-card {
+      background: var(--soft-green);
+      border-radius: 20px;
+      padding: 32px;
+    }
+
+    .referral-card h3 {
+      margin-bottom: 18px;
+    }
+
+    .referral-step {
+      display: flex;
+      gap: 13px;
+      margin-bottom: 18px;
+    }
+
+    .referral-step span {
+      min-width: 30px;
+      height: 30px;
+      background: var(--green);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
     /* ================= CTA ================= */
 
     .cta {
-      text-align: center;
       padding: 90px 7%;
+      text-align: center;
     }
 
     .cta h2 {
-      font-size: 43px;
-      margin-bottom: 14px;
+      font-size: clamp(35px, 4vw, 44px);
+      margin-bottom: 13px;
     }
 
     .cta p {
-      color: var(--muted);
-      margin: 0 auto 28px;
       max-width: 580px;
+      margin: 0 auto 28px;
+      color: var(--muted);
     }
 
     /* ================= FOOTER ================= */
@@ -438,7 +624,7 @@
     footer {
       background: #102E20;
       color: #D6E1D9;
-      padding: 40px 7%;
+      padding: 42px 7%;
     }
 
     .footer-inner {
@@ -446,38 +632,95 @@
       margin: auto;
       display: flex;
       justify-content: space-between;
-      gap: 20px;
+      align-items: center;
+      gap: 25px;
       flex-wrap: wrap;
     }
 
-    footer strong {
-      color: white;
-      font-family: "Manrope", sans-serif;
-      font-size: 21px;
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-brand img {
+      max-height: 40px;
+      max-width: 150px;
+      object-fit: contain;
+    }
+
+    .footer-copy {
+      font-size: 13px;
     }
 
     /* ================= MOBILE ================= */
 
-    @media (max-width: 850px) {
-      nav a:not(.nav-login) {
-        display: none;
-      }
-
-      header {
-        padding: 0 5%;
-      }
-
-      .hero {
-        padding: 70px 6%;
+    @media (max-width: 950px) {
+      .product-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
 
       .hero-inner,
-      .rewards-box {
+      .rewards-box,
+      .referral {
         grid-template-columns: 1fr;
+      }
+
+      .hero-card {
+        max-width: 600px;
+      }
+    }
+
+    @media (max-width: 760px) {
+      header {
+        min-height: 72px;
+        padding: 0 5%;
+      }
+
+      .brand img {
+        height: 42px;
+      }
+
+      nav {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: white;
+        border-bottom: 1px solid var(--border);
+        padding: 20px 6%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 18px;
+      }
+
+      nav.open {
+        display: flex;
+      }
+
+      nav a {
+        width: 100%;
+      }
+
+      .menu-button {
+        display: block;
+      }
+
+      .hero {
+        padding: 65px 6%;
       }
 
       .hero h1 {
         letter-spacing: -2px;
+      }
+
+      .value-inner {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .content {
+        padding: 75px 6%;
       }
 
       .feature-grid {
@@ -488,6 +731,24 @@
         padding: 35px 25px;
       }
     }
+
+    @media (max-width: 520px) {
+      .product-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .value-inner {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-actions {
+        flex-direction: column;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+    }
   </style>
 </head>
 
@@ -495,11 +756,10 @@
 
 <header>
 
-  <a href="#" class="brand">
-    <!-- Kapag may logo.png na sa repository, automatic itong lalabas -->
+  <a href="#home" class="brand">
     <img
       src="logo.png"
-      alt="SourceUp Logo"
+      alt="SourceUp"
       onerror="this.style.display='none'; document.getElementById('brandFallback').style.display='block';"
     >
 
@@ -508,15 +768,24 @@
     </span>
   </a>
 
-  <nav>
+  <nav id="navigation">
     <a href="#home">Home</a>
     <a href="#products">Products</a>
     <a href="#how">How It Works</a>
     <a href="#rewards">Rewards</a>
+    <a href="#referral">Refer & Earn</a>
     <a href="#" class="nav-login">Login</a>
   </nav>
 
+  <button
+    class="menu-button"
+    onclick="toggleMenu()"
+    aria-label="Open menu">
+    ☰
+  </button>
+
 </header>
+
 
 <main>
 
@@ -539,64 +808,94 @@
         </h1>
 
         <p class="hero-copy">
-          SourceUp makes sourcing fresh produce simpler for businesses.
-          Get reliable supplies, competitive pricing, convenient ordering,
-          and rewards every time you grow with us.
+          SourceUp helps businesses source fresh produce more conveniently
+          through reliable supply, competitive pricing and a simpler way
+          to order.
         </p>
 
         <div class="hero-actions">
-          <a href="#products" class="btn btn-primary">Browse Products →</a>
-          <a href="#" class="btn btn-secondary">Create Buyer Account</a>
+
+          <a href="#products" class="btn btn-primary">
+            Browse Products →
+          </a>
+
+          <a href="#" class="btn btn-secondary">
+            Create Buyer Account
+          </a>
+
         </div>
 
       </div>
 
+
       <div class="hero-card">
 
-        <div class="hero-card-label">Fresh supply today</div>
+        <div class="hero-card-top">
+          <div class="hero-card-label">Fresh supply</div>
+          <div class="live-badge">● AVAILABLE</div>
+        </div>
 
         <div class="produce-row">
+
           <div class="produce-info">
             <div class="produce-icon">🥬</div>
+
             <div>
               <div class="produce-name">Leafy Vegetables</div>
               <div class="produce-sub">Fresh market supply</div>
             </div>
           </div>
+
           <div class="available">Available</div>
+
         </div>
 
+
         <div class="produce-row">
+
           <div class="produce-info">
             <div class="produce-icon">🍅</div>
+
             <div>
               <div class="produce-name">Tomatoes</div>
               <div class="produce-sub">Business quantities</div>
             </div>
           </div>
+
           <div class="available">Available</div>
+
         </div>
 
+
         <div class="produce-row">
+
           <div class="produce-info">
             <div class="produce-icon">🥕</div>
+
             <div>
               <div class="produce-name">Root Crops</div>
-              <div class="produce-sub">Direct sourcing</div>
+              <div class="produce-sub">Reliable sourcing</div>
             </div>
           </div>
+
           <div class="available">Available</div>
+
         </div>
 
+
         <div class="produce-row">
+
           <div class="produce-info">
             <div class="produce-icon">🧅</div>
+
             <div>
               <div class="produce-name">Kitchen Essentials</div>
               <div class="produce-sub">Regular supply</div>
             </div>
           </div>
+
           <div class="available">Available</div>
+
         </div>
 
       </div>
@@ -605,13 +904,15 @@
 
   </section>
 
-  <!-- VALUE STRIP -->
+
+  <!-- BENEFITS -->
 
   <div class="value-strip">
+
     <div class="value-inner">
 
       <div class="value-item">
-        <strong>Better pricing</strong><br>
+        <strong>Better Pricing</strong><br>
         Smarter sourcing
       </div>
 
@@ -621,115 +922,290 @@
       </div>
 
       <div class="value-item">
-        <strong>Earn rewards</strong><br>
-        On qualified purchases
+        <strong>Earn Rewards</strong><br>
+        Qualified purchases
       </div>
 
       <div class="value-item">
-        <strong>Refer & earn</strong><br>
-        Grow the SourceUp network
+        <strong>Refer & Earn</strong><br>
+        Grow with SourceUp
       </div>
 
     </div>
+
   </div>
 
-  <!-- WHY SOURCEUP -->
+
+  <!-- PRODUCTS -->
+
+  <section class="content products-section" id="products">
+
+    <div class="section-head">
+
+      <div class="section-label">
+        SourceUp Marketplace
+      </div>
+
+      <h2>
+        Everyday supplies from a better source.
+      </h2>
+
+      <p>
+        Browse commonly sourced produce for your business.
+        Final availability and pricing may vary based on market supply.
+      </p>
+
+    </div>
+
+
+    <div class="product-grid">
+
+
+      <div class="product-card">
+
+        <div class="product-image">🍅</div>
+
+        <div class="product-body">
+
+          <div class="product-category">Vegetables</div>
+
+          <h3>Tomato</h3>
+
+          <div class="product-unit">
+            Sold per kilogram
+          </div>
+
+          <div class="product-bottom">
+
+            <div class="price">
+              Market Price
+            </div>
+
+            <button class="add-button" onclick="productNotice('Tomato')">
+              +
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="product-card">
+
+        <div class="product-image">🧅</div>
+
+        <div class="product-body">
+
+          <div class="product-category">Kitchen Essential</div>
+
+          <h3>Onion</h3>
+
+          <div class="product-unit">
+            Sold per kilogram
+          </div>
+
+          <div class="product-bottom">
+
+            <div class="price">
+              Market Price
+            </div>
+
+            <button class="add-button" onclick="productNotice('Onion')">
+              +
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="product-card">
+
+        <div class="product-image">🥕</div>
+
+        <div class="product-body">
+
+          <div class="product-category">Vegetables</div>
+
+          <h3>Carrot</h3>
+
+          <div class="product-unit">
+            Sold per kilogram
+          </div>
+
+          <div class="product-bottom">
+
+            <div class="price">
+              Market Price
+            </div>
+
+            <button class="add-button" onclick="productNotice('Carrot')">
+              +
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="product-card">
+
+        <div class="product-image">🥬</div>
+
+        <div class="product-body">
+
+          <div class="product-category">Fresh Produce</div>
+
+          <h3>Leafy Vegetables</h3>
+
+          <div class="product-unit">
+            Variety depends on supply
+          </div>
+
+          <div class="product-bottom">
+
+            <div class="price">
+              Market Price
+            </div>
+
+            <button class="add-button" onclick="productNotice('Leafy Vegetables')">
+              +
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+    <div class="catalog-note">
+      Sample catalog only. Actual product prices will be added once the SourceUp pricing system is finalized.
+    </div>
+
+  </section>
+
+
+  <!-- HOW IT WORKS -->
 
   <section class="content" id="how">
 
     <div class="section-head">
-      <div class="section-label">Why SourceUp</div>
 
-      <h2>Spend less time sourcing. Focus more on your business.</h2>
+      <div class="section-label">
+        How It Works
+      </div>
+
+      <h2>
+        Simple sourcing for busy businesses.
+      </h2>
 
       <p>
-        Built for businesses that need dependable everyday supplies
-        without unnecessary sourcing hassle.
+        SourceUp is designed to reduce the time and effort needed
+        to source everyday business supplies.
       </p>
+
     </div>
+
 
     <div class="feature-grid">
 
       <div class="feature-card">
+
         <div class="feature-number">01</div>
-        <h3>Competitive Pricing</h3>
+
+        <h3>Browse</h3>
+
         <p>
-          We simplify the supply chain to help businesses access better
-          prices without sacrificing convenience.
+          Check available products and current SourceUp offerings.
         </p>
+
       </div>
 
+
       <div class="feature-card">
+
         <div class="feature-number">02</div>
-        <h3>Convenient Sourcing</h3>
+
+        <h3>Order</h3>
+
         <p>
-          Skip repeated market trips. Order the products your business
-          needs through one simple sourcing platform.
+          Select the products and quantities your business needs.
         </p>
+
       </div>
+
 
       <div class="feature-card">
+
         <div class="feature-number">03</div>
-        <h3>Built for Repeat Buyers</h3>
+
+        <h3>Receive & Earn</h3>
+
         <p>
-          Your purchases can unlock points, benefits and account rewards
-          designed for loyal SourceUp buyers.
+          Receive your order and earn eligible SourceUp rewards
+          as you continue purchasing.
         </p>
+
       </div>
 
     </div>
 
   </section>
 
-  <!-- PRODUCTS PLACEHOLDER -->
-
-  <section class="content" id="products" style="background:#FAFCF9;">
-
-    <div class="section-head">
-      <div class="section-label">Marketplace</div>
-      <h2>Everyday supplies from a better source.</h2>
-      <p>
-        Our product catalog and live pricing will be available here.
-      </p>
-    </div>
-
-  </section>
 
   <!-- REWARDS -->
 
-  <section class="content rewards" id="rewards">
+  <section class="content rewards-section" id="rewards">
 
     <div class="rewards-box">
 
       <div>
+
         <div class="section-label" style="color:var(--lime);">
           SourceUp Rewards
         </div>
 
-        <h2>Your purchases should give something back.</h2>
+        <h2>
+          Your purchases should give something back.
+        </h2>
 
-        <p>
-          Qualified buyers earn points through purchases and referrals,
-          with better benefits as their relationship with SourceUp grows.
+        <p class="rewards-copy">
+          SourceUp buyers can earn points from qualified purchases
+          and referrals, with better benefits as their account grows.
         </p>
+
       </div>
+
 
       <div class="reward-list">
 
         <div class="reward-item">
-          ✓ Earn points on <strong>qualified purchases</strong>
+          ✓ Earn points from
+          <strong>qualified purchases</strong>
         </div>
 
         <div class="reward-item">
-          ✓ Earn from <strong>eligible referrals</strong>
+          ✓ Receive benefits from
+          <strong>eligible referrals</strong>
         </div>
 
         <div class="reward-item">
-          ✓ Unlock <strong>higher reward levels</strong>
+          ✓ Unlock
+          <strong>higher reward levels</strong>
         </div>
 
         <div class="reward-item">
-          ✓ Redeem rewards without complicated mechanics
+          ✓ Use rewards on
+          <strong>future eligible orders</strong>
         </div>
 
       </div>
@@ -737,16 +1213,94 @@
     </div>
 
   </section>
+
+
+  <!-- REFERRAL -->
+
+  <section class="content" id="referral">
+
+    <div class="referral">
+
+      <div>
+
+        <div class="section-label">
+          SourceUp Referral
+        </div>
+
+        <h2>
+          Grow the network. Get rewarded.
+        </h2>
+
+        <p>
+          Refer another qualified business to SourceUp.
+          Once referral requirements are met, eligible rewards
+          can be credited to your account.
+        </p>
+
+        <a href="#" class="btn btn-primary">
+          Join SourceUp
+        </a>
+
+      </div>
+
+
+      <div class="referral-card">
+
+        <h3>How referrals work</h3>
+
+        <div class="referral-step">
+
+          <span>1</span>
+
+          <div>
+            <strong>Get your referral code</strong><br>
+            <small>Create an eligible SourceUp buyer account.</small>
+          </div>
+
+        </div>
+
+
+        <div class="referral-step">
+
+          <span>2</span>
+
+          <div>
+            <strong>Refer a business</strong><br>
+            <small>Your referral registers using your code.</small>
+          </div>
+
+        </div>
+
+
+        <div class="referral-step">
+
+          <span>3</span>
+
+          <div>
+            <strong>Earn eligible rewards</strong><br>
+            <small>Rewards apply once qualifying conditions are met.</small>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
 
   <!-- CTA -->
 
   <section class="cta">
 
-    <h2>Ready to source smarter?</h2>
+    <h2>
+      Ready to source smarter?
+    </h2>
 
     <p>
-      Join SourceUp and make everyday business sourcing simpler,
-      more affordable and more rewarding.
+      Join SourceUp and make everyday sourcing simpler,
+      more convenient and more rewarding.
     </p>
 
     <a href="#" class="btn btn-primary">
@@ -757,22 +1311,69 @@
 
 </main>
 
+
 <footer>
 
   <div class="footer-inner">
 
-    <div>
-      <strong>SourceUp</strong><br>
-      Fresh supply. Smarter sourcing.
+    <div class="footer-brand">
+
+      <img
+        src="logo.png"
+        alt="SourceUp"
+        onerror="this.style.display='none';"
+      >
+
+      <div class="footer-copy">
+        Fresh supply.<br>
+        Smarter sourcing.
+      </div>
+
     </div>
 
-    <div>
+
+    <div class="footer-copy">
       © 2026 SourceUp. All rights reserved.
     </div>
 
   </div>
 
 </footer>
+
+
+<script>
+
+  function toggleMenu() {
+    document
+      .getElementById("navigation")
+      .classList.toggle("open");
+  }
+
+
+  function productNotice(product) {
+    alert(
+      product +
+      " selected.\n\n" +
+      "The full SourceUp cart and ordering system is coming next."
+    );
+  }
+
+
+  document
+    .querySelectorAll("nav a")
+    .forEach(function(link) {
+
+      link.addEventListener("click", function() {
+
+        document
+          .getElementById("navigation")
+          .classList.remove("open");
+
+      });
+
+    });
+
+</script>
 
 </body>
 </html>
