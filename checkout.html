@@ -243,10 +243,6 @@
       cursor: pointer;
     }
 
-    .place-order:hover {
-      background: #093e2f;
-    }
-
     .place-order:disabled {
       background: #bcc8c1;
       cursor: not-allowed;
@@ -282,7 +278,8 @@
       margin-bottom: 20px;
     }
 
-    .empty a {
+    .empty a,
+    .success-screen a {
       display: inline-block;
       background: var(--green);
       color: white;
@@ -306,7 +303,7 @@
     .success-icon {
       width: 70px;
       height: 70px;
-      margin: auto auto 20px;
+      margin: 0 auto 20px;
       border-radius: 50%;
       background: #e3f5e9;
       color: var(--green2);
@@ -346,14 +343,7 @@
     }
 
     .success-screen a {
-      display: inline-block;
-      margin-top: 10px;
-      padding: 12px 18px;
-      border-radius: 9px;
-      background: var(--green);
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
+      margin-top: 20px;
     }
 
     @media(max-width: 800px) {
@@ -387,6 +377,7 @@
 
 <header>
   <div class="header-inner">
+
     <a href="index.html" class="logo">
       <img src="logo.png" alt="SourceUp">
     </a>
@@ -394,26 +385,38 @@
     <a href="products.html" class="back-link">
       ← Back to Products
     </a>
+
   </div>
 </header>
 
 
 <section id="pageHead" class="page-head">
   <div class="page-head-inner">
+
     <h1>Checkout</h1>
+
     <p>
       Review your order and provide your delivery information.
     </p>
+
   </div>
 </section>
 
 
-<main id="checkoutMain">
+<main>
 
   <div id="emptyCart" class="empty" style="display:none;">
+
     <h2>Your cart is empty</h2>
-    <p>Add products first before proceeding to checkout.</p>
-    <a href="products.html">Browse Products</a>
+
+    <p>
+      Add products first before proceeding to checkout.
+    </p>
+
+    <a href="products.html">
+      Browse Products
+    </a>
+
   </div>
 
 
@@ -428,6 +431,7 @@
         <div class="two-fields">
 
           <div class="field">
+
             <label>
               Customer Name
               <span class="required">*</span>
@@ -437,13 +441,15 @@
               id="customerName"
               type="text"
               required
-              autocomplete="name"
               placeholder="Full name"
+              autocomplete="name"
             >
+
           </div>
 
 
           <div class="field">
+
             <label>
               Business Name
             </label>
@@ -453,6 +459,7 @@
               type="text"
               placeholder="Store / business name"
             >
+
           </div>
 
         </div>
@@ -461,6 +468,7 @@
         <div class="two-fields">
 
           <div class="field">
+
             <label>
               Mobile Number
               <span class="required">*</span>
@@ -473,10 +481,12 @@
               placeholder="09XXXXXXXXX"
               autocomplete="tel"
             >
+
           </div>
 
 
           <div class="field">
+
             <label>
               Email Address
             </label>
@@ -487,12 +497,14 @@
               placeholder="Optional"
               autocomplete="email"
             >
+
           </div>
 
         </div>
 
 
         <div class="field">
+
           <label>
             Delivery Address
             <span class="required">*</span>
@@ -502,18 +514,23 @@
             id="deliveryAddress"
             required
             placeholder="Complete delivery address"
-            autocomplete="street-address"
           ></textarea>
+
         </div>
 
 
         <div class="field">
+
           <label>
             Payment Method
             <span class="required">*</span>
           </label>
 
-          <select id="paymentMethod" required>
+          <select
+            id="paymentMethod"
+            required
+          >
+
             <option value="">
               Select payment method
             </option>
@@ -529,16 +546,19 @@
             <option value="bank_transfer">
               Bank Transfer
             </option>
+
           </select>
 
           <div class="hint">
-            Payment instructions for online payments can be confirmed
-            after your order is reviewed.
+            Online payment instructions can be provided
+            after SourceUp reviews and confirms the order.
           </div>
+
         </div>
 
 
         <div class="field">
+
           <label>
             Order Notes
           </label>
@@ -547,6 +567,7 @@
             id="notes"
             placeholder="Special instructions, preferred delivery time, etc."
           ></textarea>
+
         </div>
 
       </form>
@@ -564,36 +585,49 @@
       <div class="totals">
 
         <div class="total-row">
-          <span>Subtotal</span>
+
+          <span>Estimated Subtotal</span>
+
           <strong id="subtotal">
             ₱0.00
           </strong>
+
         </div>
 
 
         <div class="total-row">
+
           <span>Delivery Fee</span>
+
           <strong>
             To be confirmed
           </strong>
+
         </div>
 
 
         <div class="total-row grand-total">
-          <span>Order Total</span>
+
+          <span>Estimated Total</span>
+
           <span id="grandTotal">
             ₱0.00
           </span>
+
         </div>
 
       </div>
 
 
       <div class="minimum-note">
+
         <strong>Order-based sourcing:</strong>
-        Your order will first be reviewed and confirmed by SourceUp.
-        Products marked “Confirm Availability” are subject to supplier
-        availability before sourcing.
+
+        Final product prices are validated again when your
+        order is submitted. Products marked
+        “Confirm Availability” remain subject to supplier
+        availability.
+
       </div>
 
 
@@ -628,14 +662,16 @@
     <h1>Order received!</h1>
 
     <p>
-      Thank you. Your order has been submitted to SourceUp
+      Your order has been submitted to SourceUp
       and is now pending confirmation.
     </p>
 
 
     <div class="order-number-box">
 
-      <small>Your Order Number</small>
+      <small>
+        Your Order Number
+      </small>
 
       <strong id="successOrderNumber">
         —
@@ -646,7 +682,7 @@
 
     <p>
       Please keep your order number for reference.
-      SourceUp will review the order before sourcing your products.
+      We will review the order before sourcing your products.
     </p>
 
 
@@ -668,6 +704,7 @@ const SUPABASE_KEY =
   "sb_publishable_tRwJJVSxCKXz4hG11_rIww__LtxcKEg";
 
 const MINIMUM_ORDER = 1000;
+
 
 const supabaseClient =
   window.supabase.createClient(
@@ -710,15 +747,13 @@ function money(value) {
 }
 
 
-function getCartTotal() {
+function cartTotal() {
 
   return cart.reduce(
     (total, item) =>
       total +
-      (
-        Number(item.price) *
-        Number(item.quantity)
-      ),
+      Number(item.price) *
+      Number(item.quantity),
     0
   );
 
@@ -727,12 +762,12 @@ function getCartTotal() {
 
 function renderOrder() {
 
-  const emptyCart =
+  const empty =
     document.getElementById(
       "emptyCart"
     );
 
-  const checkoutContent =
+  const content =
     document.getElementById(
       "checkoutContent"
     );
@@ -740,10 +775,10 @@ function renderOrder() {
 
   if (!cart.length) {
 
-    emptyCart.style.display =
+    empty.style.display =
       "block";
 
-    checkoutContent.style.display =
+    content.style.display =
       "none";
 
     return;
@@ -751,13 +786,13 @@ function renderOrder() {
   }
 
 
-  const itemsContainer =
+  const container =
     document.getElementById(
       "orderItems"
     );
 
 
-  itemsContainer.innerHTML =
+  container.innerHTML =
     cart.map(item => {
 
       const lineTotal =
@@ -765,13 +800,13 @@ function renderOrder() {
         Number(item.quantity);
 
 
-      const confirmNote =
+      const confirmation =
         item.status === "confirm"
           ? `
             <div class="confirm-note">
               Subject to availability confirmation
             </div>
-            `
+          `
           : "";
 
 
@@ -793,7 +828,7 @@ function renderOrder() {
                 ${money(item.price)}
               </div>
 
-              ${confirmNote}
+              ${confirmation}
 
             </div>
 
@@ -811,7 +846,7 @@ function renderOrder() {
 
 
   const total =
-    getCartTotal();
+    cartTotal();
 
 
   document
@@ -833,10 +868,11 @@ function renderOrder() {
   if (total < MINIMUM_ORDER) {
 
     showError(
-      `Minimum order is ₱1,000. Please add ${money(
+      `Minimum order is ₱1,000. Add ${money(
         MINIMUM_ORDER - total
-      )} more to your cart.`
+      )} more to continue.`
     );
+
 
     document
       .getElementById(
@@ -857,6 +893,7 @@ function showError(text) {
       "message"
     );
 
+
   message.className =
     "message error";
 
@@ -873,6 +910,7 @@ function clearMessage() {
       "message"
     );
 
+
   message.className =
     "message";
 
@@ -888,30 +926,27 @@ function generateOrderNumber() {
     new Date();
 
 
-  const year =
-    now.getFullYear();
-
-
-  const month =
-    String(
-      now.getMonth() + 1
-    ).padStart(2, "0");
-
-
-  const day =
-    String(
-      now.getDate()
-    ).padStart(2, "0");
+  const date =
+    [
+      now.getFullYear(),
+      String(
+        now.getMonth() + 1
+      ).padStart(2, "0"),
+      String(
+        now.getDate()
+      ).padStart(2, "0")
+    ].join("");
 
 
   const random =
-    Math.floor(
-      100000 +
-      Math.random() * 900000
-    );
+    crypto
+      .randomUUID()
+      .replaceAll("-", "")
+      .substring(0, 8)
+      .toUpperCase();
 
 
-  return `SU-${year}${month}${day}-${random}`;
+  return `SU-${date}-${random}`;
 
 }
 
@@ -919,12 +954,6 @@ function generateOrderNumber() {
 async function placeOrder() {
 
   clearMessage();
-
-
-  const button =
-    document.getElementById(
-      "placeOrderButton"
-    );
 
 
   const form =
@@ -949,11 +978,10 @@ async function placeOrder() {
   }
 
 
-  const total =
-    getCartTotal();
-
-
-  if (total < MINIMUM_ORDER) {
+  if (
+    cartTotal() <
+    MINIMUM_ORDER
+  ) {
 
     showError(
       "Minimum total order is ₱1,000."
@@ -964,59 +992,10 @@ async function placeOrder() {
   }
 
 
-  const customerName =
+  const button =
     document.getElementById(
-      "customerName"
-    )
-    .value
-    .trim();
-
-
-  const businessName =
-    document.getElementById(
-      "businessName"
-    )
-    .value
-    .trim();
-
-
-  const phone =
-    document.getElementById(
-      "phone"
-    )
-    .value
-    .trim();
-
-
-  const email =
-    document.getElementById(
-      "email"
-    )
-    .value
-    .trim();
-
-
-  const deliveryAddress =
-    document.getElementById(
-      "deliveryAddress"
-    )
-    .value
-    .trim();
-
-
-  const paymentMethod =
-    document.getElementById(
-      "paymentMethod"
-    )
-    .value;
-
-
-  const notes =
-    document.getElementById(
-      "notes"
-    )
-    .value
-    .trim();
+      "placeOrderButton"
+    );
 
 
   button.disabled =
@@ -1026,126 +1005,107 @@ async function placeOrder() {
     "Submitting Order...";
 
 
+  const orderNumber =
+    generateOrderNumber();
+
+
+  const rpcItems =
+    cart.map(item => ({
+
+      product_id:
+        item.id,
+
+      quantity:
+        Number(item.quantity)
+
+    }));
+
+
   try {
 
-    const orderNumber =
-      generateOrderNumber();
-
-
     const {
-      data: orderData,
-      error: orderError
+      data,
+      error
     } =
       await supabaseClient
-        .from("orders")
-        .insert({
+        .rpc(
+          "create_sourceup_order",
+          {
 
-          order_number:
-            orderNumber,
+            p_order_number:
+              orderNumber,
 
-          customer_name:
-            customerName,
+            p_customer_name:
+              document
+                .getElementById(
+                  "customerName"
+                )
+                .value
+                .trim(),
 
-          business_name:
-            businessName || null,
+            p_business_name:
+              document
+                .getElementById(
+                  "businessName"
+                )
+                .value
+                .trim(),
 
-          phone:
-            phone,
+            p_phone:
+              document
+                .getElementById(
+                  "phone"
+                )
+                .value
+                .trim(),
 
-          email:
-            email || null,
+            p_email:
+              document
+                .getElementById(
+                  "email"
+                )
+                .value
+                .trim(),
 
-          delivery_address:
-            deliveryAddress,
+            p_delivery_address:
+              document
+                .getElementById(
+                  "deliveryAddress"
+                )
+                .value
+                .trim(),
 
-          notes:
-            notes || null,
+            p_notes:
+              document
+                .getElementById(
+                  "notes"
+                )
+                .value
+                .trim(),
 
-          subtotal:
-            total,
+            p_payment_method:
+              document
+                .getElementById(
+                  "paymentMethod"
+                )
+                .value,
 
-          delivery_fee:
-            0,
+            p_items:
+              rpcItems
 
-          total_amount:
-            total,
-
-          payment_method:
-            paymentMethod,
-
-          payment_status:
-            "unpaid",
-
-          order_status:
-            "pending_confirmation"
-
-        })
-        .select("id, order_number")
-        .single();
-
-
-    if (orderError) {
-      throw orderError;
-    }
-
-
-    const orderItems =
-      cart.map(item => ({
-
-        order_id:
-          orderData.id,
-
-        product_id:
-          item.id,
-
-        product_name:
-          item.name,
-
-        unit:
-          item.unit,
-
-        quantity:
-          Number(item.quantity),
-
-        unit_price:
-          Number(item.price),
-
-        line_total:
-          Number(item.price) *
-          Number(item.quantity),
-
-        availability_status:
-          item.status || "available"
-
-      }));
+          }
+        );
 
 
-    const {
-      error: itemsError
-    } =
-      await supabaseClient
-        .from("order_items")
-        .insert(orderItems);
-
-
-    if (itemsError) {
-
-      console.error(
-        "ORDER ITEMS ERROR:",
-        itemsError
-      );
-
-      throw new Error(
-        "The order was created, but there was a problem saving the order items. Please contact SourceUp with order number " +
-        orderData.order_number
-      );
-
+    if (error) {
+      throw error;
     }
 
 
     localStorage.removeItem(
       "sourceup_cart"
     );
+
 
     cart = [];
 
@@ -1179,7 +1139,7 @@ async function placeOrder() {
         "successOrderNumber"
       )
       .textContent =
-      orderData.order_number;
+      data || orderNumber;
 
 
     document
@@ -1199,7 +1159,7 @@ async function placeOrder() {
   } catch (error) {
 
     console.error(
-      "CHECKOUT ERROR:",
+      "ORDER ERROR:",
       error
     );
 
