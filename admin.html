@@ -59,7 +59,7 @@
     .login-card {
       width:100%;
       max-width:430px;
-      background:var(--white);
+      background:white;
       border:1px solid var(--border);
       border-radius:22px;
       padding:38px;
@@ -99,11 +99,29 @@
       margin-bottom:17px;
     }
 
-    .field label {
-      display:block;
+    .label-row {
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
       margin-bottom:7px;
+    }
+
+    .field label {
       font-size:12px;
       font-weight:700;
+    }
+
+    .forgot-btn {
+      border:0;
+      background:transparent;
+      color:var(--green);
+      font-size:11px;
+      font-weight:700;
+      cursor:pointer;
+    }
+
+    .forgot-btn:hover {
+      text-decoration:underline;
     }
 
     .field input {
@@ -192,6 +210,8 @@
       font-size:10px;
     }
 
+    /* DASHBOARD */
+
     #dashboard {
       display:none;
       min-height:100vh;
@@ -217,7 +237,6 @@
     .topbar-brand img {
       height:48px;
       width:auto;
-      object-fit:contain;
     }
 
     .topbar-brand span {
@@ -319,29 +338,54 @@
 
     <div class="brand">
       <img src="logo.png" alt="SourceUp">
+
       <h1>Admin Portal</h1>
+
       <p>
         Manage SourceUp products, pricing,
         inventory and availability.
       </p>
     </div>
 
+
     <form id="loginForm">
 
       <div class="field">
-        <label>Email</label>
+
+        <div class="label-row">
+          <label for="email">Email</label>
+        </div>
+
         <input
           id="email"
           type="email"
           autocomplete="email"
           placeholder="Enter your email"
           required>
+
       </div>
 
+
       <div class="field">
-        <label>Password</label>
+
+        <div class="label-row">
+
+          <label for="password">
+            Password
+          </label>
+
+          <button
+            id="forgotPassword"
+            class="forgot-btn"
+            type="button">
+            Forgot Password?
+          </button>
+
+        </div>
+
 
         <div class="password-wrap">
+
           <input
             id="password"
             type="password"
@@ -355,8 +399,11 @@
             type="button">
             SHOW
           </button>
+
         </div>
+
       </div>
+
 
       <button
         id="loginButton"
@@ -365,9 +412,14 @@
         Sign In
       </button>
 
-      <div id="message" class="message"></div>
+
+      <div
+        id="message"
+        class="message">
+      </div>
 
     </form>
+
 
     <div class="security-note">
       Authorized SourceUp administrators only
@@ -395,6 +447,7 @@
 
   </header>
 
+
   <main class="content">
 
     <h2 id="welcome">
@@ -405,11 +458,16 @@
       SourceUp Administration
     </p>
 
+
     <div class="success-card">
 
-      <div class="check">✓</div>
+      <div class="check">
+        ✓
+      </div>
 
-      <h3>Admin authentication successful</h3>
+      <h3>
+        Admin authentication successful
+      </h3>
 
       <p>
         Your login and administrator permissions are working.
@@ -426,17 +484,24 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
+
   const SUPABASE_URL =
     "https://wzpjeplgvgwwgoewfsum.supabase.co";
 
   const SUPABASE_KEY =
     "sb_publishable_tRwJJVSxCKXz4hG11_rIww__LtxcKEg";
 
+
+  const RESET_URL =
+    "https://roderickde3-jpg.github.io/sourceup/reset-password.html";
+
+
   const supabaseClient =
     window.supabase.createClient(
       SUPABASE_URL,
       SUPABASE_KEY
     );
+
 
   const loginScreen =
     document.getElementById("loginScreen");
@@ -454,34 +519,129 @@
     document.getElementById("message");
 
 
+  /* SHOW / HIDE PASSWORD */
+
   document
     .getElementById("showPassword")
-    .addEventListener("click", function () {
+    .addEventListener(
+      "click",
+      function() {
 
-      const password =
-        document.getElementById("password");
+        const password =
+          document.getElementById("password");
 
-      if (password.type === "password") {
-        password.type = "text";
-        this.textContent = "HIDE";
-      } else {
-        password.type = "password";
-        this.textContent = "SHOW";
+        if (password.type === "password") {
+
+          password.type = "text";
+          this.textContent = "HIDE";
+
+        } else {
+
+          password.type = "password";
+          this.textContent = "SHOW";
+
+        }
+
       }
+    );
 
-    });
 
+  /* FORGOT PASSWORD */
+
+  document
+    .getElementById("forgotPassword")
+    .addEventListener(
+      "click",
+      async function() {
+
+        clearMessage();
+
+        const email =
+          document
+            .getElementById("email")
+            .value
+            .trim();
+
+
+        if (!email) {
+
+          showError(
+            "Enter your email address first, then click Forgot Password."
+          );
+
+          return;
+
+        }
+
+
+        this.disabled = true;
+        this.textContent =
+          "Sending...";
+
+
+        try {
+
+          const {
+            error
+          } =
+            await supabaseClient
+              .auth
+              .resetPasswordForEmail(
+                email,
+                {
+                  redirectTo: RESET_URL
+                }
+              );
+
+
+          if (error) {
+            throw error;
+          }
+
+
+          showSuccess(
+            "Password reset email sent. Check your inbox and open the newest SourceUp reset email."
+          );
+
+
+        } catch(error) {
+
+          console.error(
+            "RESET EMAIL ERROR:",
+            error
+          );
+
+          showError(
+            "RESET ERROR: " +
+            error.message
+          );
+
+        } finally {
+
+          this.disabled = false;
+          this.textContent =
+            "Forgot Password?";
+
+        }
+
+      }
+    );
+
+
+  /* LOGIN */
 
   loginForm.addEventListener(
     "submit",
-    async function (event) {
+    async function(event) {
 
       event.preventDefault();
 
       clearMessage();
 
       loginButton.disabled = true;
-      loginButton.textContent = "Signing in...";
+      loginButton.textContent =
+        "Signing in...";
+
 
       try {
 
@@ -498,8 +658,8 @@
 
 
         const {
-          data: authData,
-          error: authError
+          data:authData,
+          error:authError
         } =
           await supabaseClient
             .auth
@@ -510,22 +670,27 @@
 
 
         if (authError) {
+
           throw new Error(
-            "AUTH ERROR: " + authError.message
+            "AUTH ERROR: " +
+            authError.message
           );
+
         }
 
 
         if (!authData.user) {
+
           throw new Error(
-            "AUTH ERROR: Login succeeded but no user was returned."
+            "AUTH ERROR: No user was returned."
           );
+
         }
 
 
         const {
-          data: profile,
-          error: profileError
+          data:profile,
+          error:profileError
         } =
           await supabaseClient
             .from("profiles")
@@ -563,12 +728,6 @@
         }
 
 
-        console.log(
-          "SOURCEUP PROFILE:",
-          profile
-        );
-
-
         const role =
           String(profile.role || "")
             .trim()
@@ -578,9 +737,7 @@
         if (role !== "admin") {
 
           throw new Error(
-            'ACCESS ERROR: Account role returned as "' +
-            profile.role +
-            '".'
+            "ACCESS ERROR: This account is not an administrator."
           );
 
         }
@@ -598,22 +755,24 @@
         showDashboard(profile);
 
 
-      } catch (error) {
+      } catch(error) {
 
         console.error(
-          "SOURCEUP ERROR:",
+          "SOURCEUP LOGIN ERROR:",
           error
         );
 
         showError(
           error.message ||
-          "Unknown error."
+          "Unknown login error."
         );
+
 
       } finally {
 
         loginButton.disabled = false;
-        loginButton.textContent = "Sign In";
+        loginButton.textContent =
+          "Sign In";
 
       }
 
@@ -621,10 +780,12 @@
   );
 
 
+  /* EXISTING SESSION */
+
   async function checkSession() {
 
     const {
-      data: { session }
+      data:{session}
     } =
       await supabaseClient
         .auth
@@ -637,7 +798,7 @@
 
 
     const {
-      data: profile,
+      data:profile,
       error
     } =
       await supabaseClient
@@ -667,7 +828,9 @@
       role === "admin" &&
       profile.is_active === true
     ) {
+
       showDashboard(profile);
+
     }
 
   }
@@ -675,8 +838,12 @@
 
   function showDashboard(profile) {
 
-    loginScreen.style.display = "none";
-    dashboard.style.display = "block";
+    loginScreen.style.display =
+      "none";
+
+    dashboard.style.display =
+      "block";
+
 
     document
       .getElementById("welcome")
@@ -687,13 +854,18 @@
   }
 
 
+  /* LOGOUT */
+
   document
     .getElementById("logoutButton")
     .addEventListener(
       "click",
-      async function () {
+      async function() {
 
-        await supabaseClient.auth.signOut();
+        await supabaseClient
+          .auth
+          .signOut();
+
         location.reload();
 
       }
@@ -702,21 +874,38 @@
 
   function showError(text) {
 
-    message.className = "message error";
-    message.textContent = text;
+    message.className =
+      "message error";
+
+    message.textContent =
+      text;
+
+  }
+
+
+  function showSuccess(text) {
+
+    message.className =
+      "message success";
+
+    message.textContent =
+      text;
 
   }
 
 
   function clearMessage() {
 
-    message.className = "message";
+    message.className =
+      "message";
+
     message.textContent = "";
 
   }
 
 
   checkSession();
+
 </script>
 
 </body>
