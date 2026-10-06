@@ -5,102 +5,101 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Checkout | SourceUp</title>
-  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="icon" href="favicon.png">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
   <style>
-    :root {
-      --forest: #174A32;
-      --green: #2F7D4E;
-      --green-hover: #25643E;
-      --lime: #B9D86B;
-      --cream: #F7F5EC;
-      --soft-green: #EDF4E8;
-      --white: #FFFFFF;
-      --ink: #17231C;
-      --muted: #647168;
-      --border: #DDE5DD;
-    }
-
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
+    :root {
+      --green: #0d4f3c;
+      --green2: #2f8555;
+      --cream: #f7f8f2;
+      --white: #ffffff;
+      --text: #17352c;
+      --muted: #718078;
+      --border: #dfe7e2;
+      --danger: #b42318;
+      --lightgreen: #edf7f1;
+    }
+
     body {
-      font-family: "DM Sans", sans-serif;
-      background: #FAFCF9;
-      color: var(--ink);
+      font-family: Arial, sans-serif;
+      background: var(--cream);
+      color: var(--text);
     }
 
-    h1, h2, h3 {
-      font-family: "Manrope", sans-serif;
-    }
-
-    a {
-      text-decoration: none;
-      color: inherit;
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
     }
 
     header {
-      height: 82px;
-      padding: 0 6%;
       background: white;
       border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
     }
 
-    .logo {
-      height: 46px;
-      max-width: 180px;
+    .header-inner {
+      max-width: 1250px;
+      height: 78px;
+      margin: auto;
+      padding: 0 25px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo img {
+      width: 125px;
+      max-height: 60px;
       object-fit: contain;
     }
 
-    .back {
-      font-weight: 700;
-      color: var(--forest);
+    .back-link {
+      text-decoration: none;
+      color: var(--green);
+      font-weight: bold;
       font-size: 14px;
     }
 
-    .page {
+    .page-head {
+      background: var(--green);
+      color: white;
+      padding: 38px 25px;
+    }
+
+    .page-head-inner {
       max-width: 1200px;
       margin: auto;
-      padding: 55px 6% 100px;
     }
 
-    .page-title {
-      margin-bottom: 35px;
-    }
-
-    .eyebrow {
-      color: var(--green);
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 1.3px;
+    .page-head h1 {
+      font-size: 34px;
       margin-bottom: 7px;
     }
 
-    .page-title h1 {
-      font-size: clamp(34px,5vw,48px);
-      letter-spacing: -1.5px;
+    .page-head p {
+      color: rgba(255,255,255,.8);
+      line-height: 1.5;
     }
 
-    .page-title p {
-      color: var(--muted);
-      margin-top: 8px;
+    main {
+      max-width: 1200px;
+      margin: auto;
+      padding: 35px 25px 80px;
     }
 
     .checkout-grid {
       display: grid;
-      grid-template-columns: 1.25fr .75fr;
-      gap: 30px;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 25px;
       align-items: start;
     }
 
@@ -108,150 +107,277 @@
       background: white;
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 28px;
+      padding: 25px;
     }
 
     .card h2 {
+      color: var(--green);
+      margin-bottom: 20px;
       font-size: 21px;
-      margin-bottom: 22px;
     }
 
-    .form-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 17px;
+    .field {
+      margin-bottom: 17px;
     }
 
-    .field.full {
-      grid-column: 1 / -1;
-    }
-
-    label {
+    .field label {
       display: block;
-      font-size: 12px;
-      font-weight: 700;
       margin-bottom: 7px;
+      font-size: 13px;
+      font-weight: bold;
     }
 
-    input,
-    textarea,
-    select {
+    .field input,
+    .field textarea,
+    .field select {
       width: 100%;
       border: 1px solid var(--border);
       border-radius: 9px;
-      padding: 13px 14px;
-      font-family: inherit;
+      padding: 12px 13px;
       outline: none;
       background: white;
     }
 
-    input:focus,
-    textarea:focus,
-    select:focus {
-      border-color: var(--green);
+    .field input:focus,
+    .field textarea:focus,
+    .field select:focus {
+      border-color: var(--green2);
     }
 
-    textarea {
+    .field textarea {
       resize: vertical;
-      min-height: 95px;
+      min-height: 90px;
+    }
+
+    .two-fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .required {
+      color: var(--danger);
+    }
+
+    .hint {
+      color: var(--muted);
+      font-size: 11px;
+      margin-top: 5px;
+      line-height: 1.4;
     }
 
     .order-item {
-      display: flex;
-      justify-content: space-between;
-      gap: 15px;
-      padding: 15px 0;
+      padding: 14px 0;
       border-bottom: 1px solid var(--border);
     }
 
-    .order-name {
-      font-weight: 700;
+    .order-item:first-child {
+      padding-top: 0;
     }
 
-    .order-meta {
-      color: var(--muted);
+    .order-item-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+    }
+
+    .item-name {
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    .item-details {
       font-size: 12px;
-      margin-top: 3px;
+      color: var(--muted);
     }
 
-    .order-price {
-      font-weight: 700;
+    .item-total {
+      font-weight: bold;
       white-space: nowrap;
+    }
+
+    .confirm-note {
+      color: #966000;
+      font-size: 11px;
+      margin-top: 5px;
+    }
+
+    .totals {
+      padding-top: 18px;
     }
 
     .total-row {
       display: flex;
       justify-content: space-between;
-      align-items: center;
-      padding-top: 20px;
+      margin-bottom: 10px;
+      font-size: 14px;
     }
 
-    .total {
-      font-size: 25px;
-      font-weight: 800;
-      color: var(--forest);
+    .grand-total {
+      font-size: 21px;
+      font-weight: bold;
+      color: var(--green);
+      padding-top: 13px;
+      margin-top: 10px;
+      border-top: 1px solid var(--border);
     }
 
-    .place-order {
-      width: 100%;
-      border: 0;
+    .minimum-note {
+      background: var(--lightgreen);
+      padding: 12px;
       border-radius: 9px;
-      padding: 15px;
-      margin-top: 23px;
-      background: var(--green);
-      color: white;
-      font-weight: 800;
-      cursor: pointer;
-      font-family: inherit;
-    }
-
-    .place-order:hover {
-      background: var(--green-hover);
-    }
-
-    .notice {
-      background: var(--soft-green);
-      color: var(--forest);
-      border-radius: 9px;
-      padding: 13px;
       margin-top: 15px;
       font-size: 12px;
       line-height: 1.5;
     }
 
-    .empty {
-      color: var(--muted);
-      text-align: center;
-      padding: 30px 10px;
+    .place-order {
+      width: 100%;
+      border: none;
+      border-radius: 10px;
+      padding: 15px;
+      margin-top: 18px;
+      background: var(--green);
+      color: white;
+      font-weight: bold;
+      cursor: pointer;
     }
 
-    @media(max-width:800px) {
+    .place-order:hover {
+      background: #093e2f;
+    }
+
+    .place-order:disabled {
+      background: #bcc8c1;
+      cursor: not-allowed;
+    }
+
+    .message {
+      margin-top: 15px;
+      padding: 12px;
+      border-radius: 9px;
+      font-size: 13px;
+      line-height: 1.5;
+      display: none;
+    }
+
+    .message.error {
+      display: block;
+      background: #fff0ee;
+      color: var(--danger);
+    }
+
+    .empty {
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    .empty h2 {
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+
+    .empty p {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .empty a {
+      display: inline-block;
+      background: var(--green);
+      color: white;
+      text-decoration: none;
+      padding: 12px 18px;
+      border-radius: 9px;
+      font-weight: bold;
+    }
+
+    .success-screen {
+      display: none;
+      max-width: 650px;
+      margin: 40px auto;
+      text-align: center;
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 45px 30px;
+    }
+
+    .success-icon {
+      width: 70px;
+      height: 70px;
+      margin: auto auto 20px;
+      border-radius: 50%;
+      background: #e3f5e9;
+      color: var(--green2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 34px;
+      font-weight: bold;
+    }
+
+    .success-screen h1 {
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+
+    .success-screen p {
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    .order-number-box {
+      margin: 22px 0;
+      padding: 17px;
+      background: var(--cream);
+      border-radius: 10px;
+    }
+
+    .order-number-box small {
+      display: block;
+      color: var(--muted);
+      margin-bottom: 6px;
+    }
+
+    .order-number-box strong {
+      color: var(--green);
+      font-size: 21px;
+    }
+
+    .success-screen a {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 12px 18px;
+      border-radius: 9px;
+      background: var(--green);
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    @media(max-width: 800px) {
       .checkout-grid {
         grid-template-columns: 1fr;
       }
+
+      .two-fields {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
     }
 
-    @media(max-width:600px) {
-      header {
-        padding: 0 5%;
+    @media(max-width: 500px) {
+      main {
+        padding: 25px 15px 60px;
       }
 
-      .logo {
-        height: 39px;
-        max-width: 140px;
+      .card {
+        padding: 20px;
       }
 
-      .page {
-        padding-left: 5%;
-        padding-right: 5%;
-      }
-
-      .form-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .field.full {
-        grid-column: auto;
+      .page-head h1 {
+        font-size: 29px;
       }
     }
   </style>
@@ -260,82 +386,167 @@
 <body>
 
 <header>
-  <a href="index.html">
-    <img src="logo.png" class="logo" alt="SourceUp">
-  </a>
+  <div class="header-inner">
+    <a href="index.html" class="logo">
+      <img src="logo.png" alt="SourceUp">
+    </a>
 
-  <a href="products.html" class="back">
-    ← Back to Products
-  </a>
+    <a href="products.html" class="back-link">
+      ← Back to Products
+    </a>
+  </div>
 </header>
 
 
-<main class="page">
+<section id="pageHead" class="page-head">
+  <div class="page-head-inner">
+    <h1>Checkout</h1>
+    <p>
+      Review your order and provide your delivery information.
+    </p>
+  </div>
+</section>
 
-  <div class="page-title">
-    <div class="eyebrow">SourceUp Checkout</div>
-    <h1>Complete your order.</h1>
-    <p>Enter your business and delivery details below.</p>
+
+<main id="checkoutMain">
+
+  <div id="emptyCart" class="empty" style="display:none;">
+    <h2>Your cart is empty</h2>
+    <p>Add products first before proceeding to checkout.</p>
+    <a href="products.html">Browse Products</a>
   </div>
 
 
-  <div class="checkout-grid">
+  <div id="checkoutContent" class="checkout-grid">
 
     <section class="card">
 
-      <h2>Buyer Information</h2>
+      <h2>Customer & Delivery Details</h2>
 
       <form id="checkoutForm">
 
-        <div class="form-grid">
+        <div class="two-fields">
 
           <div class="field">
-            <label>Contact Person *</label>
-            <input id="name" type="text" required placeholder="Juan Dela Cruz">
+            <label>
+              Customer Name
+              <span class="required">*</span>
+            </label>
+
+            <input
+              id="customerName"
+              type="text"
+              required
+              autocomplete="name"
+              placeholder="Full name"
+            >
           </div>
+
 
           <div class="field">
-            <label>Business Name *</label>
-            <input id="business" type="text" required placeholder="Juan's Restaurant">
+            <label>
+              Business Name
+            </label>
+
+            <input
+              id="businessName"
+              type="text"
+              placeholder="Store / business name"
+            >
           </div>
+
+        </div>
+
+
+        <div class="two-fields">
 
           <div class="field">
-            <label>Mobile Number *</label>
-            <input id="mobile" type="tel" required placeholder="09XXXXXXXXX">
+            <label>
+              Mobile Number
+              <span class="required">*</span>
+            </label>
+
+            <input
+              id="phone"
+              type="tel"
+              required
+              placeholder="09XXXXXXXXX"
+              autocomplete="tel"
+            >
           </div>
+
 
           <div class="field">
-            <label>Email</label>
-            <input id="email" type="email" placeholder="business@email.com">
+            <label>
+              Email Address
+            </label>
+
+            <input
+              id="email"
+              type="email"
+              placeholder="Optional"
+              autocomplete="email"
+            >
           </div>
 
-          <div class="field full">
-            <label>Delivery Address *</label>
-            <textarea id="address" required placeholder="Complete delivery address"></textarea>
+        </div>
+
+
+        <div class="field">
+          <label>
+            Delivery Address
+            <span class="required">*</span>
+          </label>
+
+          <textarea
+            id="deliveryAddress"
+            required
+            placeholder="Complete delivery address"
+            autocomplete="street-address"
+          ></textarea>
+        </div>
+
+
+        <div class="field">
+          <label>
+            Payment Method
+            <span class="required">*</span>
+          </label>
+
+          <select id="paymentMethod" required>
+            <option value="">
+              Select payment method
+            </option>
+
+            <option value="cash_on_delivery">
+              Cash on Delivery
+            </option>
+
+            <option value="gcash">
+              GCash
+            </option>
+
+            <option value="bank_transfer">
+              Bank Transfer
+            </option>
+          </select>
+
+          <div class="hint">
+            Payment instructions for online payments can be confirmed
+            after your order is reviewed.
           </div>
+        </div>
 
-          <div class="field">
-            <label>Preferred Delivery Date *</label>
-            <input id="deliveryDate" type="date" required>
-          </div>
 
-          <div class="field">
-            <label>Payment Method *</label>
+        <div class="field">
+          <label>
+            Order Notes
+          </label>
 
-            <select id="payment" required>
-              <option value="">Select payment method</option>
-              <option>Cash on Delivery</option>
-              <option>GCash</option>
-              <option>Bank Transfer</option>
-            </select>
-
-          </div>
-
-          <div class="field full">
-            <label>Order Notes</label>
-            <textarea id="notes" placeholder="Special instructions, preferred delivery time, etc."></textarea>
-          </div>
-
+          <textarea
+            id="notes"
+            placeholder="Special instructions, preferred delivery time, etc."
+          ></textarea>
         </div>
 
       </form>
@@ -349,127 +560,675 @@
 
       <div id="orderItems"></div>
 
-      <div class="total-row">
-        <strong>Total</strong>
-        <div class="total" id="orderTotal">₱0.00</div>
+
+      <div class="totals">
+
+        <div class="total-row">
+          <span>Subtotal</span>
+          <strong id="subtotal">
+            ₱0.00
+          </strong>
+        </div>
+
+
+        <div class="total-row">
+          <span>Delivery Fee</span>
+          <strong>
+            To be confirmed
+          </strong>
+        </div>
+
+
+        <div class="total-row grand-total">
+          <span>Order Total</span>
+          <span id="grandTotal">
+            ₱0.00
+          </span>
+        </div>
+
       </div>
+
+
+      <div class="minimum-note">
+        <strong>Order-based sourcing:</strong>
+        Your order will first be reviewed and confirmed by SourceUp.
+        Products marked “Confirm Availability” are subject to supplier
+        availability before sourcing.
+      </div>
+
 
       <button
+        id="placeOrderButton"
         class="place-order"
-        type="submit"
-        form="checkoutForm">
-        Submit Order Request
+        type="button"
+      >
+        Place Order
       </button>
 
-      <div class="notice">
-        Your order is not final until SourceUp confirms product availability,
-        final pricing, and delivery details.
-      </div>
+
+      <div
+        id="message"
+        class="message"
+      ></div>
 
     </aside>
 
   </div>
+
+
+  <section
+    id="successScreen"
+    class="success-screen"
+  >
+
+    <div class="success-icon">
+      ✓
+    </div>
+
+    <h1>Order received!</h1>
+
+    <p>
+      Thank you. Your order has been submitted to SourceUp
+      and is now pending confirmation.
+    </p>
+
+
+    <div class="order-number-box">
+
+      <small>Your Order Number</small>
+
+      <strong id="successOrderNumber">
+        —
+      </strong>
+
+    </div>
+
+
+    <p>
+      Please keep your order number for reference.
+      SourceUp will review the order before sourcing your products.
+    </p>
+
+
+    <a href="products.html">
+      Continue Shopping
+    </a>
+
+  </section>
 
 </main>
 
 
 <script>
 
-const cart =
-  JSON.parse(localStorage.getItem("sourceupCart")) || [];
+const SUPABASE_URL =
+  "https://wzpjeplgvgwwgoewfsum.supabase.co";
+
+const SUPABASE_KEY =
+  "sb_publishable_tRwJJVSxCKXz4hG11_rIww__LtxcKEg";
+
+const MINIMUM_ORDER = 1000;
+
+const supabaseClient =
+  window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+  );
+
+
+let cart =
+  JSON.parse(
+    localStorage.getItem(
+      "sourceup_cart"
+    ) || "[]"
+  );
+
+
+function escapeHtml(value) {
+
+  return String(value ?? "")
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
+
+}
 
 
 function money(value) {
 
-  return "₱" + value.toLocaleString("en-PH", {
-    minimumFractionDigits: 2,
-    maximumFractionDigits: 2
-  });
+  return Number(value || 0)
+    .toLocaleString(
+      "en-PH",
+      {
+        style: "currency",
+        currency: "PHP"
+      }
+    );
+
+}
+
+
+function getCartTotal() {
+
+  return cart.reduce(
+    (total, item) =>
+      total +
+      (
+        Number(item.price) *
+        Number(item.quantity)
+      ),
+    0
+  );
 
 }
 
 
 function renderOrder() {
 
-  const container =
-    document.getElementById("orderItems");
+  const emptyCart =
+    document.getElementById(
+      "emptyCart"
+    );
+
+  const checkoutContent =
+    document.getElementById(
+      "checkoutContent"
+    );
 
 
   if (!cart.length) {
 
-    container.innerHTML =
-      '<div class="empty">Your cart is empty.<br><br><a href="products.html" style="color:#2F7D4E;font-weight:700;">Browse Products</a></div>';
+    emptyCart.style.display =
+      "block";
 
-    document.getElementById("orderTotal").textContent =
-      money(0);
+    checkoutContent.style.display =
+      "none";
 
     return;
 
   }
 
 
-  container.innerHTML = cart.map(item => `
-
-    <div class="order-item">
-
-      <div>
-
-        <div class="order-name">
-          ${item.name}
-        </div>
-
-        <div class="order-meta">
-          ${item.quantity} ${item.unit}
-          ×
-          ${money(item.price)}
-        </div>
-
-      </div>
-
-      <div class="order-price">
-        ${money(item.price * item.quantity)}
-      </div>
-
-    </div>
-
-  `).join("");
-
-
-  const total =
-    cart.reduce(
-      (sum,item) =>
-        sum + item.price * item.quantity,
-      0
+  const itemsContainer =
+    document.getElementById(
+      "orderItems"
     );
 
 
-  document.getElementById("orderTotal").textContent =
+  itemsContainer.innerHTML =
+    cart.map(item => {
+
+      const lineTotal =
+        Number(item.price) *
+        Number(item.quantity);
+
+
+      const confirmNote =
+        item.status === "confirm"
+          ? `
+            <div class="confirm-note">
+              Subject to availability confirmation
+            </div>
+            `
+          : "";
+
+
+      return `
+        <div class="order-item">
+
+          <div class="order-item-top">
+
+            <div>
+
+              <div class="item-name">
+                ${escapeHtml(item.name)}
+              </div>
+
+              <div class="item-details">
+                ${Number(item.quantity)}
+                ${escapeHtml(item.unit)}
+                ×
+                ${money(item.price)}
+              </div>
+
+              ${confirmNote}
+
+            </div>
+
+
+            <div class="item-total">
+              ${money(lineTotal)}
+            </div>
+
+          </div>
+
+        </div>
+      `;
+
+    }).join("");
+
+
+  const total =
+    getCartTotal();
+
+
+  document
+    .getElementById(
+      "subtotal"
+    )
+    .textContent =
     money(total);
+
+
+  document
+    .getElementById(
+      "grandTotal"
+    )
+    .textContent =
+    money(total);
+
+
+  if (total < MINIMUM_ORDER) {
+
+    showError(
+      `Minimum order is ₱1,000. Please add ${money(
+        MINIMUM_ORDER - total
+      )} more to your cart.`
+    );
+
+    document
+      .getElementById(
+        "placeOrderButton"
+      )
+      .disabled =
+      true;
+
+  }
+
+}
+
+
+function showError(text) {
+
+  const message =
+    document.getElementById(
+      "message"
+    );
+
+  message.className =
+    "message error";
+
+  message.textContent =
+    text;
+
+}
+
+
+function clearMessage() {
+
+  const message =
+    document.getElementById(
+      "message"
+    );
+
+  message.className =
+    "message";
+
+  message.textContent =
+    "";
+
+}
+
+
+function generateOrderNumber() {
+
+  const now =
+    new Date();
+
+
+  const year =
+    now.getFullYear();
+
+
+  const month =
+    String(
+      now.getMonth() + 1
+    ).padStart(2, "0");
+
+
+  const day =
+    String(
+      now.getDate()
+    ).padStart(2, "0");
+
+
+  const random =
+    Math.floor(
+      100000 +
+      Math.random() * 900000
+    );
+
+
+  return `SU-${year}${month}${day}-${random}`;
+
+}
+
+
+async function placeOrder() {
+
+  clearMessage();
+
+
+  const button =
+    document.getElementById(
+      "placeOrderButton"
+    );
+
+
+  const form =
+    document.getElementById(
+      "checkoutForm"
+    );
+
+
+  if (!form.reportValidity()) {
+    return;
+  }
+
+
+  if (!cart.length) {
+
+    showError(
+      "Your cart is empty."
+    );
+
+    return;
+
+  }
+
+
+  const total =
+    getCartTotal();
+
+
+  if (total < MINIMUM_ORDER) {
+
+    showError(
+      "Minimum total order is ₱1,000."
+    );
+
+    return;
+
+  }
+
+
+  const customerName =
+    document.getElementById(
+      "customerName"
+    )
+    .value
+    .trim();
+
+
+  const businessName =
+    document.getElementById(
+      "businessName"
+    )
+    .value
+    .trim();
+
+
+  const phone =
+    document.getElementById(
+      "phone"
+    )
+    .value
+    .trim();
+
+
+  const email =
+    document.getElementById(
+      "email"
+    )
+    .value
+    .trim();
+
+
+  const deliveryAddress =
+    document.getElementById(
+      "deliveryAddress"
+    )
+    .value
+    .trim();
+
+
+  const paymentMethod =
+    document.getElementById(
+      "paymentMethod"
+    )
+    .value;
+
+
+  const notes =
+    document.getElementById(
+      "notes"
+    )
+    .value
+    .trim();
+
+
+  button.disabled =
+    true;
+
+  button.textContent =
+    "Submitting Order...";
+
+
+  try {
+
+    const orderNumber =
+      generateOrderNumber();
+
+
+    const {
+      data: orderData,
+      error: orderError
+    } =
+      await supabaseClient
+        .from("orders")
+        .insert({
+
+          order_number:
+            orderNumber,
+
+          customer_name:
+            customerName,
+
+          business_name:
+            businessName || null,
+
+          phone:
+            phone,
+
+          email:
+            email || null,
+
+          delivery_address:
+            deliveryAddress,
+
+          notes:
+            notes || null,
+
+          subtotal:
+            total,
+
+          delivery_fee:
+            0,
+
+          total_amount:
+            total,
+
+          payment_method:
+            paymentMethod,
+
+          payment_status:
+            "unpaid",
+
+          order_status:
+            "pending_confirmation"
+
+        })
+        .select("id, order_number")
+        .single();
+
+
+    if (orderError) {
+      throw orderError;
+    }
+
+
+    const orderItems =
+      cart.map(item => ({
+
+        order_id:
+          orderData.id,
+
+        product_id:
+          item.id,
+
+        product_name:
+          item.name,
+
+        unit:
+          item.unit,
+
+        quantity:
+          Number(item.quantity),
+
+        unit_price:
+          Number(item.price),
+
+        line_total:
+          Number(item.price) *
+          Number(item.quantity),
+
+        availability_status:
+          item.status || "available"
+
+      }));
+
+
+    const {
+      error: itemsError
+    } =
+      await supabaseClient
+        .from("order_items")
+        .insert(orderItems);
+
+
+    if (itemsError) {
+
+      console.error(
+        "ORDER ITEMS ERROR:",
+        itemsError
+      );
+
+      throw new Error(
+        "The order was created, but there was a problem saving the order items. Please contact SourceUp with order number " +
+        orderData.order_number
+      );
+
+    }
+
+
+    localStorage.removeItem(
+      "sourceup_cart"
+    );
+
+    cart = [];
+
+
+    document
+      .getElementById(
+        "pageHead"
+      )
+      .style.display =
+      "none";
+
+
+    document
+      .getElementById(
+        "checkoutContent"
+      )
+      .style.display =
+      "none";
+
+
+    document
+      .getElementById(
+        "emptyCart"
+      )
+      .style.display =
+      "none";
+
+
+    document
+      .getElementById(
+        "successOrderNumber"
+      )
+      .textContent =
+      orderData.order_number;
+
+
+    document
+      .getElementById(
+        "successScreen"
+      )
+      .style.display =
+      "block";
+
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+
+  } catch (error) {
+
+    console.error(
+      "CHECKOUT ERROR:",
+      error
+    );
+
+
+    showError(
+      error.message ||
+      "Unable to submit your order. Please try again."
+    );
+
+
+    button.disabled =
+      false;
+
+    button.textContent =
+      "Place Order";
+
+  }
 
 }
 
 
 document
-  .getElementById("checkoutForm")
-  .addEventListener("submit", function(event) {
-
-    event.preventDefault();
-
-
-    if (!cart.length) {
-
-      alert("Your cart is empty.");
-
-      return;
-
-    }
-
-
-    alert(
-      "Order details are complete! Next natin iko-connect ito sa actual SourceUp order database."
-    );
-
-  });
+  .getElementById(
+    "placeOrderButton"
+  )
+  .addEventListener(
+    "click",
+    placeOrder
+  );
 
 
 renderOrder();
