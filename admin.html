@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>SourceUp Admin</title>
+  <title>SourceUp Admin Portal</title>
   <link rel="icon" type="image/png" href="favicon.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,7 +16,6 @@
       --forest:#174A32;
       --green:#2F7D4E;
       --green-dark:#25643E;
-      --lime:#B9D86B;
       --cream:#F7F5EC;
       --white:#FFFFFF;
       --ink:#17231C;
@@ -24,6 +23,8 @@
       --border:#DDE5DD;
       --danger:#B42318;
       --danger-bg:#FDECEC;
+      --success:#216A3C;
+      --success-bg:#E9F6EC;
     }
 
     * {
@@ -43,28 +44,25 @@
       font:inherit;
     }
 
-    /* LOGIN */
-
     #loginScreen {
       min-height:100vh;
       display:flex;
       align-items:center;
       justify-content:center;
       padding:24px;
-
       background:
-        radial-gradient(circle at 85% 15%, rgba(185,216,107,.28), transparent 30%),
+        radial-gradient(circle at 85% 15%, rgba(185,216,107,.25), transparent 30%),
         radial-gradient(circle at 10% 90%, rgba(47,125,78,.10), transparent 28%),
         var(--cream);
     }
 
     .login-card {
       width:100%;
-      max-width:440px;
-      background:white;
+      max-width:430px;
+      background:var(--white);
       border:1px solid var(--border);
       border-radius:22px;
-      padding:42px 40px;
+      padding:38px;
       box-shadow:0 25px 70px rgba(23,74,50,.10);
     }
 
@@ -75,26 +73,25 @@
 
     .brand img {
       display:block;
+      height:82px;
+      max-width:210px;
       width:auto;
-      height:76px;
-      max-width:200px;
       object-fit:contain;
-      margin:0 auto 18px;
+      margin:0 auto 17px;
     }
 
     .brand h1 {
       font-family:"Manrope",sans-serif;
       color:var(--forest);
-      font-size:28px;
-      line-height:1.2;
+      font-size:27px;
       margin-bottom:8px;
     }
 
     .brand p {
       color:var(--muted);
-      font-size:14px;
+      font-size:13px;
       line-height:1.6;
-      max-width:320px;
+      max-width:310px;
       margin:auto;
     }
 
@@ -105,19 +102,18 @@
     .field label {
       display:block;
       margin-bottom:7px;
-      font-size:13px;
+      font-size:12px;
       font-weight:700;
     }
 
     .field input {
       width:100%;
       height:50px;
+      padding:0 14px;
       border:1px solid var(--border);
       border-radius:10px;
-      padding:0 14px;
-      background:white;
       outline:none;
-      font-size:15px;
+      background:white;
     }
 
     .field input:focus {
@@ -130,22 +126,23 @@
     }
 
     .password-wrap input {
-      padding-right:75px;
+      padding-right:70px;
     }
 
     .show-password {
       position:absolute;
-      top:50%;
       right:13px;
+      top:50%;
       transform:translateY(-50%);
       border:0;
       background:transparent;
       color:var(--green);
       font-size:11px;
       font-weight:800;
+      cursor:pointer;
     }
 
-    .login-button {
+    .login-btn {
       width:100%;
       height:50px;
       border:0;
@@ -153,25 +150,27 @@
       background:var(--green);
       color:white;
       font-weight:800;
-      margin-top:4px;
+      cursor:pointer;
+      margin-top:3px;
     }
 
-    .login-button:hover {
+    .login-btn:hover {
       background:var(--green-dark);
     }
 
-    .login-button:disabled {
-      opacity:.65;
+    .login-btn:disabled {
+      opacity:.6;
       cursor:not-allowed;
     }
 
     .message {
       display:none;
       margin-top:16px;
-      border-radius:10px;
       padding:12px 14px;
+      border-radius:10px;
       font-size:12px;
       line-height:1.5;
+      word-break:break-word;
     }
 
     .message.error {
@@ -182,18 +181,16 @@
 
     .message.success {
       display:block;
-      background:#E9F6EC;
-      color:#216A3C;
+      background:var(--success-bg);
+      color:var(--success);
     }
 
     .security-note {
-      text-align:center;
       margin-top:22px;
+      text-align:center;
       color:#8A948E;
       font-size:10px;
     }
-
-    /* DASHBOARD */
 
     #dashboard {
       display:none;
@@ -201,63 +198,60 @@
       background:#F6F8F5;
     }
 
-    .dashboard-header {
-      height:78px;
-      padding:0 38px;
+    .topbar {
+      height:76px;
       display:flex;
       align-items:center;
       justify-content:space-between;
+      padding:0 35px;
       background:white;
       border-bottom:1px solid var(--border);
     }
 
-    .dashboard-brand {
+    .topbar-brand {
       display:flex;
       align-items:center;
-      gap:15px;
+      gap:13px;
     }
 
-    .dashboard-brand img {
+    .topbar-brand img {
       height:48px;
       width:auto;
       object-fit:contain;
     }
 
-    .dashboard-brand div {
+    .topbar-brand span {
       font-family:"Manrope",sans-serif;
       color:var(--forest);
       font-weight:800;
-      font-size:18px;
     }
 
-    .logout {
+    .logout-btn {
+      padding:10px 15px;
       border:1px solid var(--border);
+      border-radius:9px;
       background:white;
       color:var(--forest);
-      border-radius:9px;
-      padding:10px 15px;
       font-weight:700;
+      cursor:pointer;
     }
 
-    .dashboard-content {
-      max-width:1200px;
+    .content {
+      max-width:1100px;
       margin:auto;
-      padding:45px 30px;
+      padding:50px 30px;
     }
 
-    .welcome {
-      margin-bottom:30px;
-    }
-
-    .welcome h2 {
+    .content h2 {
       font-family:"Manrope",sans-serif;
       color:var(--forest);
       font-size:30px;
-      margin-bottom:7px;
+      margin-bottom:8px;
     }
 
-    .welcome p {
+    .content > p {
       color:var(--muted);
+      margin-bottom:30px;
     }
 
     .success-card {
@@ -267,16 +261,17 @@
       padding:30px;
     }
 
-    .success-icon {
-      width:50px;
-      height:50px;
-      border-radius:50%;
-      background:#E9F6EC;
-      color:var(--green);
+    .check {
+      width:52px;
+      height:52px;
       display:flex;
       align-items:center;
       justify-content:center;
-      font-size:24px;
+      border-radius:50%;
+      background:var(--success-bg);
+      color:var(--success);
+      font-size:25px;
+      font-weight:800;
       margin-bottom:18px;
     }
 
@@ -288,8 +283,8 @@
 
     .success-card p {
       color:var(--muted);
-      line-height:1.6;
       font-size:14px;
+      line-height:1.7;
     }
 
     @media(max-width:520px) {
@@ -298,24 +293,19 @@
       }
 
       .login-card {
-        padding:34px 24px;
-        border-radius:18px;
+        padding:32px 23px;
       }
 
       .brand img {
-        height:68px;
+        height:72px;
       }
 
-      .brand h1 {
-        font-size:25px;
-      }
-
-      .dashboard-header {
+      .topbar {
         padding:0 18px;
       }
 
-      .dashboard-content {
-        padding:30px 18px;
+      .content {
+        padding:35px 18px;
       }
     }
   </style>
@@ -323,185 +313,177 @@
 
 <body>
 
-  <section id="loginScreen">
+<section id="loginScreen">
 
-    <div class="login-card">
+  <div class="login-card">
 
-      <div class="brand">
-        <img src="logo.png" alt="SourceUp">
-        <h1>Admin Portal</h1>
-        <p>
-          Manage SourceUp products, pricing,
-          inventory and availability.
-        </p>
+    <div class="brand">
+      <img src="logo.png" alt="SourceUp">
+      <h1>Admin Portal</h1>
+      <p>
+        Manage SourceUp products, pricing,
+        inventory and availability.
+      </p>
+    </div>
+
+    <form id="loginForm">
+
+      <div class="field">
+        <label>Email</label>
+        <input
+          id="email"
+          type="email"
+          autocomplete="email"
+          placeholder="Enter your email"
+          required>
       </div>
 
-      <form id="loginForm">
+      <div class="field">
+        <label>Password</label>
 
-        <div class="field">
-          <label for="email">Email address</label>
+        <div class="password-wrap">
           <input
-            id="email"
-            type="email"
-            autocomplete="email"
-            placeholder="Enter your email"
+            id="password"
+            type="password"
+            autocomplete="current-password"
+            placeholder="Enter your password"
             required>
+
+          <button
+            id="showPassword"
+            class="show-password"
+            type="button">
+            SHOW
+          </button>
         </div>
-
-        <div class="field">
-          <label for="password">Password</label>
-
-          <div class="password-wrap">
-
-            <input
-              id="password"
-              type="password"
-              autocomplete="current-password"
-              placeholder="Enter your password"
-              required>
-
-            <button
-              id="togglePassword"
-              class="show-password"
-              type="button">
-              SHOW
-            </button>
-
-          </div>
-        </div>
-
-        <button
-          id="loginButton"
-          class="login-button"
-          type="submit">
-          Sign In
-        </button>
-
-        <div id="message" class="message"></div>
-
-      </form>
-
-      <div class="security-note">
-        Authorized SourceUp administrators only
       </div>
+
+      <button
+        id="loginButton"
+        class="login-btn"
+        type="submit">
+        Sign In
+      </button>
+
+      <div id="message" class="message"></div>
+
+    </form>
+
+    <div class="security-note">
+      Authorized SourceUp administrators only
+    </div>
+
+  </div>
+
+</section>
+
+
+<section id="dashboard">
+
+  <header class="topbar">
+
+    <div class="topbar-brand">
+      <img src="logo.png" alt="SourceUp">
+      <span>Admin Portal</span>
+    </div>
+
+    <button
+      id="logoutButton"
+      class="logout-btn">
+      Sign Out
+    </button>
+
+  </header>
+
+  <main class="content">
+
+    <h2 id="welcome">
+      Welcome
+    </h2>
+
+    <p>
+      SourceUp Administration
+    </p>
+
+    <div class="success-card">
+
+      <div class="check">✓</div>
+
+      <h3>Admin authentication successful</h3>
+
+      <p>
+        Your login and administrator permissions are working.
+        The full product management dashboard will be added next.
+      </p>
 
     </div>
 
-  </section>
+  </main>
+
+</section>
 
 
-  <section id="dashboard">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-    <header class="dashboard-header">
+<script>
+  const SUPABASE_URL =
+    "https://wzpjeplgvgwwgoewfsum.supabase.co";
 
-      <div class="dashboard-brand">
-        <img src="logo.png" alt="SourceUp">
-        <div>Admin</div>
-      </div>
+  const SUPABASE_KEY =
+    "sb_publishable_tRwJJVSxCKXz4hG11_rIww__LtxcKEg";
 
-      <button id="logoutButton" class="logout">
-        Sign Out
-      </button>
+  const supabaseClient =
+    window.supabase.createClient(
+      SUPABASE_URL,
+      SUPABASE_KEY
+    );
 
-    </header>
+  const loginScreen =
+    document.getElementById("loginScreen");
 
-    <main class="dashboard-content">
+  const dashboard =
+    document.getElementById("dashboard");
 
-      <div class="welcome">
-        <h2 id="welcomeName">Welcome</h2>
-        <p>Your SourceUp administrator account is working.</p>
-      </div>
+  const loginForm =
+    document.getElementById("loginForm");
 
-      <div class="success-card">
+  const loginButton =
+    document.getElementById("loginButton");
 
-        <div class="success-icon">✓</div>
-
-        <h3>Admin authentication successful</h3>
-
-        <p>
-          Your account has been authenticated and verified
-          as an active SourceUp administrator. Product
-          management will be added here next.
-        </p>
-
-      </div>
-
-    </main>
-
-  </section>
+  const message =
+    document.getElementById("message");
 
 
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  document
+    .getElementById("showPassword")
+    .addEventListener("click", function () {
 
-  <script>
+      const password =
+        document.getElementById("password");
 
-    const SUPABASE_URL =
-      "https://wzpjeplgvgwwgoewfsum.supabase.co";
+      if (password.type === "password") {
+        password.type = "text";
+        this.textContent = "HIDE";
+      } else {
+        password.type = "password";
+        this.textContent = "SHOW";
+      }
 
-    const SUPABASE_KEY =
-      "sb_publishable_tRwJJVSxCKXz4hG11_rIww__LtxcKEg";
-
-
-    const supabaseClient =
-      window.supabase.createClient(
-        SUPABASE_URL,
-        SUPABASE_KEY
-      );
-
-
-    const loginScreen =
-      document.getElementById("loginScreen");
-
-    const dashboard =
-      document.getElementById("dashboard");
-
-    const loginForm =
-      document.getElementById("loginForm");
-
-    const loginButton =
-      document.getElementById("loginButton");
-
-    const message =
-      document.getElementById("message");
+    });
 
 
-    /* PASSWORD SHOW/HIDE */
+  loginForm.addEventListener(
+    "submit",
+    async function (event) {
 
-    document
-      .getElementById("togglePassword")
-      .addEventListener("click", function() {
+      event.preventDefault();
 
-        const password =
-          document.getElementById("password");
+      clearMessage();
 
-        if (password.type === "password") {
+      loginButton.disabled = true;
+      loginButton.textContent = "Signing in...";
 
-          password.type = "text";
-          this.textContent = "HIDE";
-
-        } else {
-
-          password.type = "password";
-          this.textContent = "SHOW";
-
-        }
-
-      });
-
-
-    /* LOGIN */
-
-    loginForm.addEventListener(
-      "submit",
-      async function(event) {
-
-        event.preventDefault();
-
-        clearMessage();
-
-        loginButton.disabled = true;
-        loginButton.textContent = "Signing in...";
-
+      try {
 
         const email =
           document
@@ -515,248 +497,227 @@
             .value;
 
 
-        try {
-
-          /* STEP 1: AUTHENTICATE */
-
-          const {
-            data: authData,
-            error: authError
-          } =
-            await supabaseClient
-              .auth
-              .signInWithPassword({
-                email,
-                password
-              });
+        const {
+          data: authData,
+          error: authError
+        } =
+          await supabaseClient
+            .auth
+            .signInWithPassword({
+              email,
+              password
+            });
 
 
-          if (authError) {
-
-            throw new Error(
-              "AUTH ERROR: " +
-              authError.message
-            );
-
-          }
-
-
-          if (!authData.user) {
-
-            throw new Error(
-              "AUTH ERROR: No user was returned."
-            );
-
-          }
-
-
-          /* STEP 2: GET PROFILE */
-
-          const {
-            data: profile,
-            error: profileError
-          } =
-            await supabaseClient
-              .from("profiles")
-              .select(
-                "id, full_name, role, is_active"
-              )
-              .eq(
-                "id",
-                authData.user.id
-              )
-              .maybeSingle();
-
-
-          if (profileError) {
-
-            console.error(
-              "PROFILE ERROR:",
-              profileError
-            );
-
-            throw new Error(
-              "PROFILE ERROR: " +
-              profileError.message
-            );
-
-          }
-
-
-          if (!profile) {
-
-            throw new Error(
-              "PROFILE ERROR: Your login works, but no SourceUp profile was found for this account."
-            );
-
-          }
-
-
-          /* STEP 3: VERIFY ROLE */
-
-          console.log(
-            "SourceUp profile:",
-            profile
+        if (authError) {
+          throw new Error(
+            "AUTH ERROR: " + authError.message
           );
+        }
 
 
-          if (
-            String(profile.role).trim() !== "admin"
-          ) {
-
-            throw new Error(
-              "ACCESS ERROR: Your account role is \"" +
-              profile.role +
-              "\" instead of \"admin\"."
-            );
-
-          }
+        if (!authData.user) {
+          throw new Error(
+            "AUTH ERROR: Login succeeded but no user was returned."
+          );
+        }
 
 
-          if (profile.is_active !== true) {
+        const {
+          data: profile,
+          error: profileError
+        } =
+          await supabaseClient
+            .from("profiles")
+            .select(
+              "id, full_name, role, is_active"
+            )
+            .eq(
+              "id",
+              authData.user.id
+            )
+            .maybeSingle();
 
-            throw new Error(
-              "ACCESS ERROR: This administrator account is inactive."
-            );
 
-          }
-
-
-          /* SUCCESS */
-
-          showDashboard(profile);
-
-
-        } catch (error) {
+        if (profileError) {
 
           console.error(
-            "SOURCEUP LOGIN ERROR:",
-            error
+            "PROFILE QUERY ERROR:",
+            profileError
           );
 
-          showError(
-            error.message ||
-            "Unknown login error."
+          throw new Error(
+            "PROFILE ERROR: " +
+            profileError.message
           );
-
-        } finally {
-
-          loginButton.disabled = false;
-          loginButton.textContent = "Sign In";
 
         }
+
+
+        if (!profile) {
+
+          throw new Error(
+            "PROFILE ERROR: Login works, but no matching profile was found."
+          );
+
+        }
+
+
+        console.log(
+          "SOURCEUP PROFILE:",
+          profile
+        );
+
+
+        const role =
+          String(profile.role || "")
+            .trim()
+            .replace(/^['"]|['"]$/g, "");
+
+
+        if (role !== "admin") {
+
+          throw new Error(
+            'ACCESS ERROR: Account role returned as "' +
+            profile.role +
+            '".'
+          );
+
+        }
+
+
+        if (profile.is_active !== true) {
+
+          throw new Error(
+            "ACCESS ERROR: Administrator account is inactive."
+          );
+
+        }
+
+
+        showDashboard(profile);
+
+
+      } catch (error) {
+
+        console.error(
+          "SOURCEUP ERROR:",
+          error
+        );
+
+        showError(
+          error.message ||
+          "Unknown error."
+        );
+
+      } finally {
+
+        loginButton.disabled = false;
+        loginButton.textContent = "Sign In";
+
+      }
+
+    }
+  );
+
+
+  async function checkSession() {
+
+    const {
+      data: { session }
+    } =
+      await supabaseClient
+        .auth
+        .getSession();
+
+
+    if (!session) {
+      return;
+    }
+
+
+    const {
+      data: profile,
+      error
+    } =
+      await supabaseClient
+        .from("profiles")
+        .select(
+          "id, full_name, role, is_active"
+        )
+        .eq(
+          "id",
+          session.user.id
+        )
+        .maybeSingle();
+
+
+    if (error || !profile) {
+      return;
+    }
+
+
+    const role =
+      String(profile.role || "")
+        .trim()
+        .replace(/^['"]|['"]$/g, "");
+
+
+    if (
+      role === "admin" &&
+      profile.is_active === true
+    ) {
+      showDashboard(profile);
+    }
+
+  }
+
+
+  function showDashboard(profile) {
+
+    loginScreen.style.display = "none";
+    dashboard.style.display = "block";
+
+    document
+      .getElementById("welcome")
+      .textContent =
+      "Welcome, " +
+      (profile.full_name || "Admin");
+
+  }
+
+
+  document
+    .getElementById("logoutButton")
+    .addEventListener(
+      "click",
+      async function () {
+
+        await supabaseClient.auth.signOut();
+        location.reload();
 
       }
     );
 
 
-    /* EXISTING SESSION */
+  function showError(text) {
 
-    checkExistingSession();
+    message.className = "message error";
+    message.textContent = text;
 
-
-    async function checkExistingSession() {
-
-      const {
-        data: { session }
-      } =
-        await supabaseClient.auth.getSession();
+  }
 
 
-      if (!session) {
-        return;
-      }
+  function clearMessage() {
+
+    message.className = "message";
+    message.textContent = "";
+
+  }
 
 
-      const {
-        data: profile,
-        error
-      } =
-        await supabaseClient
-          .from("profiles")
-          .select(
-            "id, full_name, role, is_active"
-          )
-          .eq(
-            "id",
-            session.user.id
-          )
-          .maybeSingle();
-
-
-      if (
-        !error &&
-        profile &&
-        String(profile.role).trim() === "admin" &&
-        profile.is_active === true
-      ) {
-
-        showDashboard(profile);
-
-      }
-
-    }
-
-
-    /* DASHBOARD */
-
-    function showDashboard(profile) {
-
-      loginScreen.style.display = "none";
-      dashboard.style.display = "block";
-
-
-      const name =
-        profile.full_name || "Admin";
-
-
-      document
-        .getElementById("welcomeName")
-        .textContent =
-        "Welcome, " + name;
-
-    }
-
-
-    /* LOGOUT */
-
-    document
-      .getElementById("logoutButton")
-      .addEventListener(
-        "click",
-        async function() {
-
-          await supabaseClient.auth.signOut();
-
-          location.reload();
-
-        }
-      );
-
-
-    /* MESSAGE */
-
-    function showError(text) {
-
-      message.className =
-        "message error";
-
-      message.textContent =
-        text;
-
-    }
-
-
-    function clearMessage() {
-
-      message.className =
-        "message";
-
-      message.textContent = "";
-
-    }
-
-  </script>
+  checkSession();
+</script>
 
 </body>
 </html>
